@@ -1,0 +1,20 @@
+{
+  "initialDeclarations": {
+    "pathToHeaders": "/home/g/gamrat/KLOE/Include/Codes/inc",
+    "headerFiles": [
+      "/home/g/gamrat/KLOE/Include/Codes/inc/const.h",
+      "/home/g/gamrat/KLOE/Include/Codes/inc/ErrorLogs.h",
+      "/home/g/gamrat/KLOE/Include/Codes/inc/kloe_class.h"
+    ],
+    "libraries": [
+      "libcurl",
+      "/home/g/gamrat/KLOE/build/Include/Codes/libLibRec.so"
+    ]
+  },
+  "finishedRootFiles": [
+    "/home/g/gamrat/init_analysis/finished/all_phys_finished.txt",
+    "/home/g/gamrat/init_analysis/finished/all_phys2_finished.txt",
+    "/home/g/gamrat/init_analysis/finished/all_phys3_finished.txt",
+    "/home/g/gamrat/init_analysis/finished/data_finished.txt"
+  ]
+}
