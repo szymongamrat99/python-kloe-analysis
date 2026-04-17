@@ -1,4 +1,5 @@
 import ROOT
+import json
 
 
 class ColumnDefiner:
@@ -12,6 +13,10 @@ class ColumnDefiner:
         cols.add("totalE", "pi01Fit[3] + pi02Fit[3]")
         rdf = cols.apply()          # returns the new node with all columns
         print(cols.names())         # ["combined_Pi0", "totalE"]
+
+    Or load from JSON:
+        cols = ColumnDefiner(rdf).from_json("config/columns.json")
+        rdf = cols.apply()
     """
 
     def __init__(self, rdf):
@@ -32,6 +37,26 @@ class ColumnDefiner:
         for name, expr in items:
             self._definitions.append((name, expr))
         return self
+
+    def from_json(self, path):
+        """Load column definitions from a JSON file.
+
+        JSON format:
+            {
+                "combined_Pi0": "sqrt(pow(pi01Fit[5] - PhysicsConstants::mPi0, 2) + ...)",
+                "totalE": "pi01Fit[3] + pi02Fit[3]"
+            }
+        """
+        with open(path, 'r') as f:
+            data = json.load(f)
+        self.add_many(data)
+        return self
+
+    @staticmethod
+    def _load_json(path):
+        """Load column definitions dict from JSON (without needing an RDF)."""
+        with open(path, 'r') as f:
+            return json.load(f)
 
     def apply(self):
         """Apply all registered Define() calls and return the new RDF node."""

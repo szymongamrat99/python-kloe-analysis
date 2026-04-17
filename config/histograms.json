@@ -1,0 +1,60 @@
+{
+    "chi2": {
+        "var": "Chi2SignalKinFit",
+        "title": "Chi2 of the signal kinfit; #chi^{2} [-]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 100,
+        "filter": "",
+        "log_y": true,
+        "legend_pos": [0.55, 0.65, 0.88, 0.88]
+    },
+    "combined_Pi0": {
+        "var": "combined_Pi0",
+        "title": "Combined #pi^{0} mass; m [MeV]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 10,
+        "filter": ""
+    },
+    "totalE_Pi0": {
+        "var": "totalE",
+        "title": "Total energy of #pi^{0} pair; E [MeV]; Entries",
+        "nbins": 100,
+        "xmin": 400,
+        "xmax": 600,
+        "filter": ""
+    },
+    "deltaT_MC":
+     {
+        "var": "deltaT_MC",
+        "title": "Time difference MC Gen; t^{MC}_{ch} - t^{MC}_{ne} [#tau_{S}]; Entries",
+        "nbins": 101,
+        "xmin": -50,
+        "xmax": 50,
+        "filter": ""
+    },
+    "deltaT":
+     {
+        "var": "deltaT",
+        "title": "Time difference; t^{fit}_{ch} - t^{fit}_{ne} [#tau_{S}]; Entries",
+        "nbins": 101,
+        "xmin": -50,
+        "xmax": 50,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "pi0_mass_2d": {
+        "dim": 2,
+        "var": "pi01Fit[5]",
+        "var_y": "pi02Fit[5]",
+        "title": "#pi^{0} masses; m_{#pi^{0}_{1}} [MeV]; m_{#pi^{0}_{2}} [MeV]",
+        "nbins": 100,
+        "xmin": 50,
+        "xmax": 250,
+        "nbins_y": 100,
+        "ymin": 50,
+        "ymax": 250
+    }
+}

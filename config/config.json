@@ -4,7 +4,8 @@
     "headerFiles": [
       "/home/g/gamrat/KLOE/Include/Codes/inc/const.h",
       "/home/g/gamrat/KLOE/Include/Codes/inc/ErrorLogs.h",
-      "/home/g/gamrat/KLOE/Include/Codes/inc/kloe_class.h"
+      "/home/g/gamrat/KLOE/Include/Codes/inc/kloe_class.h",
+      "/home/g/gamrat/KLOE/Include/Codes/inc/interf_function.h"
     ],
     "libraries": [
       "libcurl",
