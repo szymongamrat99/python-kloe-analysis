@@ -4,10 +4,12 @@ import math as mt
 from lib.utils.initial_declarations import InitialDeclarations
 from lib.utils.utils import load_files_into_chain, get_chann_dicts
 from lib.hist.multi_channel_hist import MultiChannelHist
+from lib.hist.multi_channel_hist_2d import MultiChannelHist2D
 from lib.hist.hist_model_loader import HistModelLoader
 from lib.hist.hist_cache import HistCache
 from lib.hist.hist_archive import HistArchive
 from lib.rdf.column_definer import ColumnDefiner
+from lib.hist.efficiency_purity_calculator import EfficiencyPurityCalculator
 
 # Disable ROOT logon file loading
 ROOT.PyConfig.DisableRootLogon = True
@@ -45,6 +47,11 @@ if not os.path.exists(img_dir):
 rdf = ROOT.RDataFrame(chain)
 
 # Declare C++ helper wrappers for functions with pointer-based signatures
+# ROOT.gInterpreter.Declare('#include <utility>')
+# ROOT.gInterpreter.Declare("""
+# #include <algorithm>
+# template void std::swap<TH1D*>(TH1D*&, TH1D*&);
+# """)
 ROOT.gInterpreter.Declare("""
 double wrap_double_exponential(double dt) {
     double x[1] = {dt};
@@ -66,7 +73,16 @@ rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 hist_models = HistModelLoader(os.path.join(os.path.dirname(__file__), "..", "config", "histograms.json"))
 
 # Global filter applied to all histograms
-global_filter = f"abs(minv4gam - {ROOT.PhysicsConstants.mK0}) < 76"
+global_filter = ""
+
+# Efficiency
+# eff_pur_calculator = EfficiencyPurityCalculator(rdf, truth_condition="mctruth == 1")
+# efficiency_hist = eff_pur_calculator.efficiency_histo_per_time_difference(selection="", bin_width=1.0, xmin=-100, xmax=100)
+
+# canvas_eff = ROOT.TCanvas("canvas_efficiency", "Efficiency vs #Deltat", 800, 600)
+# efficiency_hist.SetLineColor(ROOT.kBlue)
+# efficiency_hist.Draw("PE1")
+# canvas_eff.SaveAs(os.path.join(img_dir, "efficiency_vs_deltat.svg"))
 
 # Cache file
 cache_path = os.path.join(os.path.dirname(__file__), "..", "output", "hist_cache.root")
@@ -80,9 +96,19 @@ archive = HistArchive(output_dir, columns=ColumnDefiner._load_json(columns_confi
                       global_filter=global_filter)
 
 for name, hm in hist_models.all().items():
-    if hm.dim != 1:
+    if hm.dim >= 3:
         continue
 
+    if hm.dim == 2:
+        # --- 2D histograms: one canvas per channel, COLZ ---
+        print(f"[2D] {name} — computing...")
+        mch2d = MultiChannelHist2D(rdf, channName, channColor,
+                                   hist_model=hm, global_filter=global_filter)
+        mch2d.build()
+        mch2d.draw(save_as=os.path.join(img_dir, f"{name}.svg"))
+        continue
+
+    # --- 1D histograms ---
     # Try loading from cache
     cached = cache.load(name, global_filter=global_filter,
                         hist_model=hm, chann_names=chann_list)

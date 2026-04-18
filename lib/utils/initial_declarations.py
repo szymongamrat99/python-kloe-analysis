@@ -33,19 +33,19 @@ class InitialDeclarations:
         headers = init_dec.get("headerFiles", [])
         libraries = init_dec.get("libraries", [])
 
-        for header in headers:
-          try:
-            ROOT.gInterpreter.Declare(f'#include "{header}"')
-            print(f"Included header: {header}")
-          except Exception as e:
-            print(f"Failed to include header: {header}. Error: {e}")
-
         for library in libraries:
           try:
             ROOT.gSystem.Load(library)
             print(f"Loaded library: {library}")
           except Exception as e:
-            print(f"Failed to load library: {library}. Error: {e}") 
+            print(f"Failed to load library: {library}. Error: {e}")
+
+        for header in headers:
+          result = ROOT.gInterpreter.Declare(f'#include "{header}"')
+          if result:
+            print(f"Included header: {header}")
+          else:
+            raise RuntimeError(f"Failed to include header: {header}") 
 
         return True
         

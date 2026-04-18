@@ -5,8 +5,8 @@ if [ "$#" -lt 1 ]; then
     exit 1;
 fi
 
-LOG_DIR="/storage/gpfs_small_files/kloe/gamrat/log/$1"
-ROOT_DIR="/storage/gpfs_small_files/kloe/gamrat/root_files/${1^^}_SIGNAL_NoSmearing"
+LOG_DIR="/home/g/gamrat/root_files/2026-04-17/Signal/log/$1"
+ROOT_DIR="/home/g/gamrat/root_files/2026-04-17/Signal/${1^^}_SIGNAL_NoSmearing"
 
 rm -f "finished/${1}_finished.txt"
 touch "finished/${1}_finished.txt"

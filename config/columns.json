@@ -3,5 +3,8 @@
     "totalE": "pi01Fit[3] + pi02Fit[3]",
     "deltaT_MC": "KaonChTimeCMMC - KaonNeTimeCMMC",
     "deltaT": "KaonChTimeCMSignalFit - KaonNeTimeCMSignalFit",
-    "interference_weight": "wrap_interf_function(deltaT_MC) / wrap_double_exponential(deltaT_MC)"
+    "interference_weight": "wrap_interf_function(deltaT_MC) / wrap_double_exponential(deltaT_MC)",
+    "deltaPhiv": "abs(Phiv1 - Phiv2)",
+    "pi01_mass": "pi01Fit[5]",
+    "pi02_mass": "pi02Fit[5]"
 }

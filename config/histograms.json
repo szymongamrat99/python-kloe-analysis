@@ -6,16 +6,18 @@
         "xmin": 0,
         "xmax": 100,
         "filter": "",
-        "log_y": true,
-        "legend_pos": [0.55, 0.65, 0.88, 0.88]
+        "log_y": false,
+        "legend_pos": [0.55, 0.65, 0.88, 0.88],
+        "weight": "interference_weight"
     },
     "combined_Pi0": {
         "var": "combined_Pi0",
         "title": "Combined #pi^{0} mass; m [MeV]; Entries",
         "nbins": 100,
         "xmin": 0,
-        "xmax": 10,
-        "filter": ""
+        "xmax": 100,
+        "filter": "",
+        "weight": "interference_weight"
     },
     "totalE_Pi0": {
         "var": "totalE",
@@ -38,17 +40,17 @@
      {
         "var": "deltaT",
         "title": "Time difference; t^{fit}_{ch} - t^{fit}_{ne} [#tau_{S}]; Entries",
-        "nbins": 101,
-        "xmin": -50,
-        "xmax": 50,
+        "nbins": 201,
+        "xmin": -100,
+        "xmax": 100,
         "ymin_display": 0,
         "filter": "",
         "weight": "interference_weight"
     },
     "pi0_mass_2d": {
         "dim": 2,
-        "var": "pi01Fit[5]",
-        "var_y": "pi02Fit[5]",
+        "var": "pi01_mass",
+        "var_y": "pi02_mass",
         "title": "#pi^{0} masses; m_{#pi^{0}_{1}} [MeV]; m_{#pi^{0}_{2}} [MeV]",
         "nbins": 100,
         "xmin": 50,

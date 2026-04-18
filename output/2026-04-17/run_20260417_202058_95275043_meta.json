@@ -1,0 +1,336 @@
+{
+  "run_id": "run_20260417_202058_95275043",
+  "date": "2026-04-17",
+  "timestamp": "2026-04-17T20:22:20.858322",
+  "global_filter": "abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75",
+  "columns": {
+    "combined_Pi0": "sqrt(pow(pi01Fit[5] - PhysicsConstants::mPi0, 2) + pow(pi02Fit[5] - PhysicsConstants::mPi0, 2))",
+    "totalE": "pi01Fit[3] + pi02Fit[3]",
+    "deltaT_MC": "KaonChTimeCMMC - KaonNeTimeCMMC",
+    "deltaT": "KaonChTimeCMSignalFit - KaonNeTimeCMSignalFit",
+    "interference_weight": "wrap_interf_function(deltaT_MC) / wrap_double_exponential(deltaT_MC)",
+    "deltaPhiv": "abs(Phiv1 - Phiv2)"
+  },
+  "histograms": {
+    "chi2": {
+      "per_hist_filter": "",
+      "combined_filter": "(abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75)",
+      "variable": "Chi2SignalKinFit",
+      "model": {
+        "title": "Chi2 of the signal kinfit; #chi^{2} [-]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 100,
+        "dim": 1
+      },
+      "channels": {
+        "Data": {
+          "entries": 161936.0,
+          "mean": 11.773567414329849,
+          "rms": 6.459565764410397
+        },
+        "Signal": {
+          "entries": 128868.0,
+          "mean": 10.587261405585808,
+          "rms": 5.714407016205075
+        },
+        "Regeneration": {
+          "entries": 21532.0,
+          "mean": 13.673862143382163,
+          "rms": 6.821730313447294
+        },
+        "Omega": {
+          "entries": 1344.0,
+          "mean": 12.605964583190064,
+          "rms": 5.812827590535827
+        },
+        "3pi0": {
+          "entries": 15522.0,
+          "mean": 16.90889916613254,
+          "rms": 6.929568715119062
+        },
+        "Semileptonic": {
+          "entries": 3977.0,
+          "mean": 14.290424993204697,
+          "rms": 6.388963462533797
+        },
+        "Other": {
+          "entries": 3423.0,
+          "mean": 12.042267092312196,
+          "rms": 6.299818636325365
+        },
+        "pi+pi-pi+pi-": {
+          "entries": 0.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "MC sum": {
+          "entries": 174666.0,
+          "mean": 11.657911970260383,
+          "rms": 6.326783976332747
+        }
+      },
+      "purity": 0.7377967091477449,
+      "efficiency": 0.8458236521876108,
+      "signal_before": 152358,
+      "signal_after": 128868.0,
+      "background_after": 45798.0
+    },
+    "combined_Pi0": {
+      "per_hist_filter": "",
+      "combined_filter": "(abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75)",
+      "variable": "combined_Pi0",
+      "model": {
+        "title": "Combined #pi^{0} mass; m [MeV]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 100,
+        "dim": 1
+      },
+      "channels": {
+        "Data": {
+          "entries": 161936.0,
+          "mean": 5.412683082022088,
+          "rms": 3.0890383345646835
+        },
+        "Signal": {
+          "entries": 128868.0,
+          "mean": 4.827674342357357,
+          "rms": 2.9204803479907326
+        },
+        "Regeneration": {
+          "entries": 21532.0,
+          "mean": 6.7713497599811765,
+          "rms": 3.0434671253769823
+        },
+        "Omega": {
+          "entries": 1344.0,
+          "mean": 4.578364257565796,
+          "rms": 2.7918291866855776
+        },
+        "3pi0": {
+          "entries": 15522.0,
+          "mean": 7.558787529623203,
+          "rms": 2.9639884895894695
+        },
+        "Semileptonic": {
+          "entries": 3977.0,
+          "mean": 6.732872180508957,
+          "rms": 3.03626931094642
+        },
+        "Other": {
+          "entries": 3423.0,
+          "mean": 5.347952647485963,
+          "rms": 3.1103748005469702
+        },
+        "pi+pi-pi+pi-": {
+          "entries": 0.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "MC sum": {
+          "entries": 174666.0,
+          "mean": 5.361644145705924,
+          "rms": 3.0994759858209195
+        }
+      },
+      "purity": 0.7377967091477449,
+      "efficiency": 0.8458236521876108,
+      "signal_before": 152358,
+      "signal_after": 128868.0,
+      "background_after": 45798.0
+    },
+    "totalE_Pi0": {
+      "per_hist_filter": "",
+      "combined_filter": "(abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75)",
+      "variable": "totalE",
+      "model": {
+        "title": "Total energy of #pi^{0} pair; E [MeV]; Entries",
+        "nbins": 100,
+        "xmin": 400,
+        "xmax": 600,
+        "dim": 1
+      },
+      "channels": {
+        "Data": {
+          "entries": 161936.0,
+          "mean": 509.7438240899606,
+          "rms": 1.0731852058587277
+        },
+        "Signal": {
+          "entries": 128868.0,
+          "mean": 509.7561835618801,
+          "rms": 1.0773702299467827
+        },
+        "Regeneration": {
+          "entries": 21532.0,
+          "mean": 509.7350473968847,
+          "rms": 1.0180541389541564
+        },
+        "Omega": {
+          "entries": 1344.0,
+          "mean": 509.72889202653664,
+          "rms": 1.0009477354760163
+        },
+        "3pi0": {
+          "entries": 15522.0,
+          "mean": 509.7966680511745,
+          "rms": 1.0863641253131564
+        },
+        "Semileptonic": {
+          "entries": 3977.0,
+          "mean": 509.79464636872086,
+          "rms": 1.0751218635347
+        },
+        "Other": {
+          "entries": 3423.0,
+          "mean": 509.7658746295919,
+          "rms": 1.0779329438008287
+        },
+        "pi+pi-pi+pi-": {
+          "entries": 0.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "MC sum": {
+          "entries": 174666.0,
+          "mean": 509.7580314064648,
+          "rms": 1.0705436973267808
+        }
+      },
+      "purity": 0.7377967091477449,
+      "efficiency": 0.8458236521876108,
+      "signal_before": 152358,
+      "signal_after": 128868.0,
+      "background_after": 45798.0
+    },
+    "deltaT_MC": {
+      "per_hist_filter": "",
+      "combined_filter": "(abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75)",
+      "variable": "deltaT_MC",
+      "model": {
+        "title": "Time difference MC Gen; t^{MC}_{ch} - t^{MC}_{ne} [#tau_{S}]; Entries",
+        "nbins": 101,
+        "xmin": -50,
+        "xmax": 50,
+        "dim": 1
+      },
+      "channels": {
+        "Data": {
+          "entries": 161936.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "Signal": {
+          "entries": 128868.0,
+          "mean": -0.9900859443006337,
+          "rms": 28.02342366982756
+        },
+        "Regeneration": {
+          "entries": 21532.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "Omega": {
+          "entries": 1344.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "3pi0": {
+          "entries": 15522.0,
+          "mean": -24.335078640527435,
+          "rms": 14.735113859192573
+        },
+        "Semileptonic": {
+          "entries": 3977.0,
+          "mean": 24.207963557767773,
+          "rms": 14.7420133698592
+        },
+        "Other": {
+          "entries": 3423.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "pi+pi-pi+pi-": {
+          "entries": 0.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "MC sum": {
+          "entries": 174666.0,
+          "mean": -1.2459998514548034,
+          "rms": 21.784724309414045
+        }
+      },
+      "purity": 0.7377967091477449,
+      "efficiency": 0.8458236521876108,
+      "signal_before": 152358,
+      "signal_after": 128868.0,
+      "background_after": 45798.0
+    },
+    "deltaT": {
+      "per_hist_filter": "",
+      "combined_filter": "(abs(minv4gam - 497.6107675312575) < 76 && Qmiss < 3.75)",
+      "variable": "deltaT",
+      "model": {
+        "title": "Time difference; t^{fit}_{ch} - t^{fit}_{ne} [#tau_{S}]; Entries",
+        "nbins": 201,
+        "xmin": -100,
+        "xmax": 100,
+        "dim": 1
+      },
+      "channels": {
+        "Data": {
+          "entries": 161936.0,
+          "mean": -4.34560137108156,
+          "rms": 52.658359367918884
+        },
+        "Signal": {
+          "entries": 128868.0,
+          "mean": -0.9484819241690935,
+          "rms": 55.644544587294455
+        },
+        "Regeneration": {
+          "entries": 21532.0,
+          "mean": -9.41305839296362,
+          "rms": 47.518811370172166
+        },
+        "Omega": {
+          "entries": 1344.0,
+          "mean": 1.177129786770054,
+          "rms": 2.8725755720048527
+        },
+        "3pi0": {
+          "entries": 15522.0,
+          "mean": -47.41224672659205,
+          "rms": 29.189805537180536
+        },
+        "Semileptonic": {
+          "entries": 3977.0,
+          "mean": 45.516286911535076,
+          "rms": 29.238850896575812
+        },
+        "Other": {
+          "entries": 3423.0,
+          "mean": 1.5799763753675362,
+          "rms": 54.62701997784213
+        },
+        "pi+pi-pi+pi-": {
+          "entries": 0.0,
+          "mean": 0.0,
+          "rms": 0.0
+        },
+        "MC sum": {
+          "entries": 174666.0,
+          "mean": -4.265021155499427,
+          "rms": 53.92541256314992
+        }
+      },
+      "purity": 0.7377967091477449,
+      "efficiency": 0.8458236521876108,
+      "signal_before": 152358,
+      "signal_after": 128868.0,
+      "background_after": 45798.0
+    }
+  }
+}

@@ -32,6 +32,7 @@ class HistModel:
             self.nbins_y = config["nbins_y"]
             self.ymin = config["ymin"]
             self.ymax = config["ymax"]
+            self.log_z = config.get("log_z", False)
 
     def make_root_model(self, suffix=""):
         """Return ROOT.RDF.TH1DModel or TH2DModel with optional name suffix."""
