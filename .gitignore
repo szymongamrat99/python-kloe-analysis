@@ -4,3 +4,4 @@ log/*
 img/*
 *.root
 .kloe-ana/
+*_meta.json

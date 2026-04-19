@@ -142,10 +142,12 @@ for name, hm in hist_models.all().items():
     if hm.dim == 2:
         # --- 2D histograms: one canvas per channel, COLZ ---
         print(f"[2D] {name} — computing...")
+        dir_name = os.path.join(img_dir, name)
+        os.makedirs(dir_name, exist_ok=True)
         mch2d = MultiChannelHist2D(rdf, channName, channColor,
                                    hist_model=hm, global_filter=global_filter)
         mch2d.build()
-        mch2d.draw(save_as=os.path.join(img_dir, f"{name}.svg"))
+        mch2d.draw(save_as=os.path.join(dir_name, f"{name}.svg"))
         continue
 
     # --- 1D histograms ---
