@@ -33,6 +33,14 @@ ROOT.Utils.InitializeVariables(logger) # Initialize physics constants
 pm00 = ROOT.KLOE.pm00() # General pm00 class
 
 channName, channColor = get_chann_dicts() # Chann name and color dicts to python
+
+physics_error_names = [
+    "NO_VTX_WITH_TWO_TRACKS", "LESS_THAN_FOUR_NEUTRAL_CLUSTERS", "NO_VTX_WITH_OPPOSITE_TRACKS", "LESS_THAN_FOUR_CLUSTERS_WITH_GOOD_ENERGY", 
+    "TRILATERATION_KIN_FIT"
+]
+
+ErrorCodes = ROOT.ErrorHandling.ErrorCodes  # adjust namespace
+error_dict = {name: int(getattr(ErrorCodes, name)) for name in physics_error_names}
 # ----------------------------------------
 # Set up the TChain and load files into it
 chain = ROOT.TChain("h1")
@@ -60,6 +68,16 @@ double wrap_interf_function(double dt) {
 };
 """)
 
+ROOT.gInterpreter.Declare("""
+// Compute angle (in degrees) between two 3-vectors given as array components
+double vec3Angle(double x1, double y1, double z1,
+                 double x2, double y2, double z2) {
+    TVector3 v1(x1, y1, z1);
+    TVector3 v2(x2, y2, z2);
+    return v1.Angle(v2);
+}
+""")
+
 columns_config = os.path.join(os.path.dirname(__file__), "..", "config", "columns.json")
 rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 
@@ -67,17 +85,77 @@ rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 hist_models = HistModelLoader(os.path.join(os.path.dirname(__file__), "..", "config", "histograms.json"))
 
 chi2Cut = 30.0
-mPiChCut = 1.2
+mPiChCut = 2.637
 mCombPi0Cut = 10.
 mPiNeCut = 76.
 qMissCut = 3.75
 
+Kchrec_mass_mean = 497.605
+
+# Cuts on pi0-plane
+pi0Mass1_mean = 134.83240924168848
+pi0Mass1_sigma = 3.402793221980809
+pi0Mass2_mean = 134.87134080668446
+pi0Mass2_sigma = 3.22758797811996
+rho = -0.3399659203793453
+
+u_cut = 8.085754304
+v_cut = 11.514665004
+
+u_column = f"((pi01Fit[5] - {pi0Mass1_mean}) + (pi02Fit[5] - {pi0Mass2_mean})) / sqrt(2)"
+v_column = f"((pi01Fit[5] - {pi0Mass1_mean}) - (pi02Fit[5] - {pi0Mass2_mean})) / sqrt(2)"
+
+# Cut for resolution improvement
+radius_00 = f"sqrt(pow(KnerecFit[6] - ipFit[0], 2) + pow(KnerecFit[7] - ipFit[1], 2))"
+radius_pm = f"sqrt(pow(KchrecFit[6] - ipFit[0], 2) + pow(KchrecFit[7] - ipFit[1], 2))"
+z_00 = f"abs(KnerecFit[8] - ipFit[2])"
+z_pm = f"abs(KchrecFit[8] - ipFit[2])"
+
+radius_00_limit = 1.5
+radius_pm_limit = 2.0
+z_00_limit = 1.5
+z_pm_limit = 1.5
+
+fiducial_Volume_Close = f"{radius_00} < {radius_00_limit} && {z_00} < {z_00_limit} && {radius_pm} < {radius_pm_limit} && {z_pm} < {z_pm_limit}"
+
+# Cut for omega-pi0 rejection
+radius_00_pm = f"sqrt(pow(KnerecFit[6] - KchrecFit[6], 2) + pow(KnerecFit[7] - KchrecFit[7], 2))"
+z_00_pm = f"abs(KnerecFit[8] - KchrecFit[8])"
+
+radius_00_pm_limit = 2.05
+z_00_pm_limit = 2.45
+
+fiducial_Volume_Omega = f"{radius_00_pm} < {radius_00_pm_limit} && {z_00_pm} < {z_00_pm_limit}"
+
+# Angle between trk1 and Kchrec
+angle_trk1_kchrec = f"cos(vec3Angle(trk1Fit[0], trk1Fit[1], trk1Fit[2], KchrecFit[0], KchrecFit[1], KchrecFit[2]))"
+# Angle between trk2 and Kchrec
+angle_trk2_kchrec = f"cos(vec3Angle(trk2Fit[0], trk2Fit[1], trk2Fit[2], KchrecFit[0], KchrecFit[1], KchrecFit[2]))"
+
+angle_trk1_kchrec_limit = 0.8
+angle_trk2_kchrec_limit = 0.8
+# ---
+#Rho pm
+rho_pm = f"sqrt(pow(KchrecFit[6] - ipFit[0], 2) + pow(KchrecFit[7] - ipFit[1], 2))"
+rho_00 = f"sqrt(pow(KnerecFit[6] - ipFit[0], 2) + pow(KnerecFit[7] - ipFit[1], 2))"
+
+rho = f"sqrt(pow({rho_pm},2) + pow({rho_00},2))"
+rho_limit = 0.8
+# ---
+# Definition of columns
+rdf = rdf.Define("u", u_column).Define("v", v_column).Define("angle_trk1_kchrec", angle_trk1_kchrec).Define("angle_trk2_kchrec", angle_trk2_kchrec).Define("rho", rho)
+
+
+# Cut list
 single_cuts = {
                 f"Chi2SignalKinFit < {chi2Cut}": True,
-                f"abs(Kchrec[5] - {ROOT.PhysicsConstants.mK0}) < {mPiChCut}": True,
-                f"combined_Pi0 < {mCombPi0Cut}": True,
+                f"abs(Kchrec[5] - {Kchrec_mass_mean}) < {mPiChCut}": True,
+                f"abs(u) < {u_cut}": True,
+                f"abs(v) < {v_cut}": True,
+                f"(({fiducial_Volume_Close} && (abs(angle_trk1_kchrec) < {angle_trk1_kchrec_limit} && abs(angle_trk2_kchrec) < {angle_trk2_kchrec_limit})) || !({fiducial_Volume_Close}))": True,
+                f"(({fiducial_Volume_Omega} && rho > {rho_limit}) || !({fiducial_Volume_Omega}))": True,
                 f"abs(minv4gam - {ROOT.PhysicsConstants.mK0}) < {mPiNeCut}": True,
-                f"Qmiss < {qMissCut}": True,
+                f"Qmiss < {qMissCut}": True
               }
 
 global_filter = ""
@@ -92,7 +170,25 @@ global_filter = "(" + global_filter + ")" if global_filter else ""
 
 
 # Efficiency
-eff_pur_calculator = EfficiencyPurityCalculator(rdf, truth_condition="mctruth == 1", truth_condition_before_cut="mctruth == 0", bin_width=1.0, xmin=-30.0, xmax=30.0)
+eff_pur_calculator = EfficiencyPurityCalculator(rdf, truth_condition="mctruth == 1", truth_condition_before_cut="mctruth == 0", bin_width=1.0, xmin=-50.0, xmax=50.0)
+
+total, selected, eff_errors, all_good_clusters, single_bad_cluster = eff_pur_calculator.calculate_preselection_eff(err_codes=error_dict)
+
+print(f"Total true signal events: {total}")
+
+for err_name, count in selected.items():
+    print(f"Selected events with error '{err_name}': {count} (efficiency: {eff_errors[err_name]:.4f})")
+    print(f"  - All good clusters: {all_good_clusters[err_name]}")
+    print(f"  - Single bad cluster: {single_bad_cluster[err_name]}")
+    print("\n")
+
+print("\n")
+
+total_true, selected_true, true_selected, selected, efficiency, purity = eff_pur_calculator.calculate_efficiency_purity(selection=global_filter)
+
+print(f"Efficiency: {efficiency:.4f} ({selected_true}/{total_true})")
+print(f"Purity: {purity:.4f} ({true_selected}/{selected})")
+
 efficiency_hist = eff_pur_calculator.efficiency_histo_per_time_difference(selection=global_filter)
 
 canvas_eff = ROOT.TCanvas("canvas_efficiency", "Efficiency vs #Deltat", 800, 800)

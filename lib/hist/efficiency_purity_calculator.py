@@ -11,6 +11,9 @@ class EfficiencyPurityCalculator:
     self.rdf = getattr(rdf, define)("deltaT_MC", self.time_diff_MC)
     define = "Redefine" if self.rdf.HasColumn("deltaT") else "Define"
     self.rdf = getattr(self.rdf, define)("deltaT", self.time_diff_rec)
+
+    mc_total = f"mcflag == 1 && (mctruth == -1 || {truth_condition} || {truth_condition_before_cut})"
+    self.rdfSignalTot = self.rdf.Filter(mc_total)
     self.rdfMC = self.rdf.Filter("mcflag == 1 && mctruth != -1")
     self.rdfData = self.rdf.Filter("mcflag == 0")
 
@@ -42,7 +45,7 @@ class EfficiencyPurityCalculator:
     self.histEfficiency = ROOT.TEfficiency(histSelected.GetPtr(), histSignalTotal.GetPtr())
     self.histEfficiency.SetStatisticOption(ROOT.TEfficiency.kBUniform)
 
-    self.histEfficiency.SetTitle(";#Deltat [#tau_{S}];Efficiency [-]")
+    self.histEfficiency.SetTitle(";#Deltat^{MC} [#tau_{S}];Efficiency [-]")
     self.histEfficiency.SetName("efficiency_per_time_difference")
 
     return self.histEfficiency
@@ -84,19 +87,51 @@ class EfficiencyPurityCalculator:
         tuple: A tuple containing the efficiency and purity values.
     """
     
-    rdfMC = self.rdf.Filter("mcflag == 1")
+    comb_total_selection = selection + " && " + self.combined_truth_condition if selection else self.truth_condition
+
+    comb_selection = selection + " && " + self.truth_condition if selection else self.truth_condition
+
+    bkg_selection = selection + " && " + "!" + self.truth_condition_before_cut if selection else "!" + self.truth_condition_before_cut 
 
     # Count total true events
-    total_true = rdfMC.Filter(truth_condition).Count().GetValue()
+    total_true = self.rdfMC.Filter(self.combined_truth_condition).Count().GetValue()
 
     # Count selected events
-    selected = rdfMC.Filter(selection).Count().GetValue()
+    selected_true = self.rdfMC.Filter(comb_total_selection).Count().GetValue()
 
     # Count true events that are selected
-    true_selected = rdfMC.Filter(f"{selection} && {truth_condition}").Count().GetValue()
+    true_selected = self.rdfMC.Filter(comb_selection).Count().GetValue()
+
+    selected = self.rdfMC.Filter(bkg_selection).Count().GetValue()
 
     # Calculate efficiency and purity
-    efficiency = true_selected / total_true if total_true > 0 else 0
+    efficiency = selected_true / total_true if total_true > 0 else 0
     purity = true_selected / selected if selected > 0 else 0
 
-    return efficiency, purity
+    return total_true, selected_true, true_selected, selected, efficiency, purity
+
+  def calculate_preselection_eff(self, err_codes: dict[str, int]):
+
+    total_true = self.rdfSignalTot.Count().GetValue()
+
+    selection = ""
+
+    all_good_clusters = {}
+    single_bad_cluster = {}
+
+    selected = {}
+    efficiency = {}
+
+    for name, code in err_codes.items():
+      selection = f"{selection} && (errorcode != {code})" if selection else f"(errorcode != {code})"
+
+      selected_true = self.rdfSignalTot.Filter(selection).Count().GetValue()
+
+      efficiency[name] = selected_true / total_true if total_true > 0 else 0
+      selected[name] = selected_true
+
+      all_good_clusters[name] = self.rdfSignalTot.Filter(selection + f" && (goodClustersTriKinFitSize == 4)").Count().GetValue()
+      single_bad_cluster[name] = self.rdfSignalTot.Filter(selection + f" && (goodClustersTriKinFitSize >= 3)").Count().GetValue()
+
+
+    return total_true, selected, efficiency, all_good_clusters, single_bad_cluster
