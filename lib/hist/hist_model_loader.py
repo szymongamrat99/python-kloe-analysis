@@ -35,17 +35,17 @@ class HistModel:
             self.log_z = config.get("log_z", False)
 
     def make_root_model(self, suffix=""):
-        """Return ROOT.RDF.TH1DModel or TH2DModel with optional name suffix."""
+        """Return a tuple that ROOT's Pythonization converts to TH1DModel/TH2DModel."""
         full_name = f"{self.name}_{suffix}" if suffix else self.name
 
         if self.dim == 2:
-            return ROOT.RDF.TH2DModel(
+            return (
                 full_name, self.title,
                 self.nbins, self.xmin, self.xmax,
                 self.nbins_y, self.ymin, self.ymax,
             )
         else:
-            return ROOT.RDF.TH1DModel(
+            return (
                 full_name, self.title,
                 self.nbins, self.xmin, self.xmax,
             )

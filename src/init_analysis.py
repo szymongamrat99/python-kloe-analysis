@@ -1,4 +1,8 @@
+# Disable ROOT logon file loading — MUST be before import ROOT
 import ROOT
+ROOT.PyConfig.DisableRootLogon = True
+ROOT.gROOT.SetBatch(True)
+
 import os
 import math as mt
 from lib.utils.initial_declarations import InitialDeclarations
@@ -10,10 +14,6 @@ from lib.hist.hist_cache import HistCache
 from lib.hist.hist_archive import HistArchive
 from lib.rdf.column_definer import ColumnDefiner
 from lib.hist.efficiency_purity_calculator import EfficiencyPurityCalculator
-
-# Disable ROOT logon file loading
-ROOT.PyConfig.DisableRootLogon = True
-ROOT.gROOT.SetBatch(True)
 
 # Load of the initial declarations from the config file
 #-----------------------------------------
@@ -46,12 +46,6 @@ if not os.path.exists(img_dir):
 
 rdf = ROOT.RDataFrame(chain)
 
-# Declare C++ helper wrappers for functions with pointer-based signatures
-# ROOT.gInterpreter.Declare('#include <utility>')
-# ROOT.gInterpreter.Declare("""
-# #include <algorithm>
-# template void std::swap<TH1D*>(TH1D*&, TH1D*&);
-# """)
 ROOT.gInterpreter.Declare("""
 double wrap_double_exponential(double dt) {
     double x[1] = {dt};
@@ -72,17 +66,63 @@ rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 # Load histogram models from config
 hist_models = HistModelLoader(os.path.join(os.path.dirname(__file__), "..", "config", "histograms.json"))
 
-# Global filter applied to all histograms
+chi2Cut = 30.0
+mPiChCut = 1.2
+mCombPi0Cut = 10.
+mPiNeCut = 76.
+qMissCut = 3.75
+
+single_cuts = {
+                f"Chi2SignalKinFit < {chi2Cut}": True,
+                f"abs(Kchrec[5] - {ROOT.PhysicsConstants.mK0}) < {mPiChCut}": True,
+                f"combined_Pi0 < {mCombPi0Cut}": True,
+                f"abs(minv4gam - {ROOT.PhysicsConstants.mK0}) < {mPiNeCut}": True,
+                f"Qmiss < {qMissCut}": True,
+              }
+
 global_filter = ""
 
-# Efficiency
-# eff_pur_calculator = EfficiencyPurityCalculator(rdf, truth_condition="mctruth == 1")
-# efficiency_hist = eff_pur_calculator.efficiency_histo_per_time_difference(selection="", bin_width=1.0, xmin=-100, xmax=100)
+for cut, enabled in single_cuts.items():
+    if enabled:
+        if global_filter:
+            global_filter += " && "
+        global_filter += f"({cut})"
 
-# canvas_eff = ROOT.TCanvas("canvas_efficiency", "Efficiency vs #Deltat", 800, 600)
-# efficiency_hist.SetLineColor(ROOT.kBlue)
-# efficiency_hist.Draw("PE1")
-# canvas_eff.SaveAs(os.path.join(img_dir, "efficiency_vs_deltat.svg"))
+global_filter = "(" + global_filter + ")" if global_filter else ""
+
+
+# Efficiency
+eff_pur_calculator = EfficiencyPurityCalculator(rdf, truth_condition="mctruth == 1", truth_condition_before_cut="mctruth == 0", bin_width=1.0, xmin=-30.0, xmax=30.0)
+efficiency_hist = eff_pur_calculator.efficiency_histo_per_time_difference(selection=global_filter)
+
+canvas_eff = ROOT.TCanvas("canvas_efficiency", "Efficiency vs #Deltat", 800, 800)
+efficiency_hist.SetLineColor(ROOT.kBlack)
+efficiency_hist.Draw("PE1")
+ROOT.gPad.Update()
+efficiency_hist.GetPaintedGraph().GetYaxis().SetRangeUser(0.0, 1.0)
+canvas_eff.SaveAs(os.path.join(img_dir, "efficiency_vs_deltat.svg"))
+
+histSelectedSignal, histSelected, histPurity = eff_pur_calculator.purity_histo_per_time_difference(selection=global_filter)
+canvas_pur = ROOT.TCanvas("canvas_purity", "Purity vs #Deltat", 800, 800)
+histPurity.SetLineColor(ROOT.kBlack)
+histPurity.Draw("PE1")
+ROOT.gPad.Update()
+histPurity.GetPaintedGraph().GetYaxis().SetRangeUser(0.0, 1.0)
+canvas_pur.SaveAs(os.path.join(img_dir, "purity_vs_deltat.svg"))
+
+canvas_selsig = ROOT.TCanvas("canvas_selected_signal", "Selected Signal vs #Deltat", 800, 800)
+histSelectedSignal.SetLineColor(ROOT.kOrange)
+histSelectedSignal.Draw("HIST")
+ROOT.gPad.Update()
+histSelectedSignal.GetYaxis().SetRangeUser(0.0, 1.2 * histSelectedSignal.GetMaximum())
+canvas_selsig.SaveAs(os.path.join(img_dir, "selected_signal_vs_deltat.svg"))
+
+canvas_sel = ROOT.TCanvas("canvas_selected", "Selected vs #Deltat", 800, 800)
+histSelected.SetLineColor(ROOT.kOrange)
+histSelected.Draw("HIST")
+ROOT.gPad.Update()
+histSelected.GetYaxis().SetRangeUser(0.0, 1.2 * histSelected.GetMaximum())
+canvas_sel.SaveAs(os.path.join(img_dir, "selected_vs_deltat.svg"))
 
 # Cache file
 cache_path = os.path.join(os.path.dirname(__file__), "..", "output", "hist_cache.root")
@@ -96,7 +136,7 @@ archive = HistArchive(output_dir, columns=ColumnDefiner._load_json(columns_confi
                       global_filter=global_filter)
 
 for name, hm in hist_models.all().items():
-    if hm.dim >= 3:
+    if hm.dim > 2:
         continue
 
     if hm.dim == 2:

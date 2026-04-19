@@ -35,10 +35,10 @@ class MultiChannelHist2D:
             hmodel = hist_model.make_root_model(suffix=chann)
 
             if chann == "Data":
-                self.histos[chann] = rdf_data.Histo2D(hmodel, var_x, var_y)
+                self.histos[chann] = rdf_data.Histo2D(hmodel, var_x, var_y, "")
             else:
                 self.histos[chann] = rdf_mc.Filter(f"mctruth == {key}").Histo2D(
-                    hmodel, var_x, var_y)
+                    hmodel, var_x, var_y, "")
 
         self._built = False
 
