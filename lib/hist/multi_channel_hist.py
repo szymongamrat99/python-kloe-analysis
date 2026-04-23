@@ -4,7 +4,7 @@ from lib.hist.hist_model_loader import HistModel
 
 class MultiChannelHist:
     def __init__(self, rdf, channName, channColor, hist_model=None,
-                 var=None, model=None, base_filter="", global_filter=""):
+                 var=None, model=None, base_filter="", global_filter="", scale_map={}, config=None):
         """
         rdf           - ROOT.RDataFrame (or filtered node)
         channName     - dict {mctruth_id: channel_name}
@@ -17,6 +17,7 @@ class MultiChannelHist:
         """
         self.channName = channName
         self.channColor = channColor
+        self.scale_map = scale_map
         self.histos = {}
 
         # Resolve from HistModel or legacy tuple
@@ -67,8 +68,26 @@ class MultiChannelHist:
                 self.histos[chann] = rdf_sig.Histo1D(hmodel, self.var, self._hist_model.weight)
                 self._signal_key = key
                 self._signal_rdf = rdf_sig  # keep ref for entry count
+            elif chann == "Regeneration":
+                weight_far_left = self.scale_map["Regeneration"][0]
+                weight_near_left = self.scale_map["Regeneration"][1]
+                weight_near_right = self.scale_map["Regeneration"][2]
+                weight_far_right = self.scale_map["Regeneration"][3]
+
+                split_histos = []
+                split_histos.append(rdf_mc.Define("weight_col", f"{weight_far_left}").Filter(f"mctruth == {key} && deltaT <= -30").Histo1D(hmodel, self.var, "weight_col"))
+                split_histos.append(rdf_mc.Define("weight_col", f"{weight_near_left}").Filter(f"mctruth == {key} && deltaT > -30 && deltaT <= 0").Histo1D(hmodel, self.var, "weight_col"))
+                split_histos.append(rdf_mc.Define("weight_col", f"{weight_near_right}").Filter(f"mctruth == {key} && deltaT > 0 && deltaT <= 30").Histo1D(hmodel, self.var, "weight_col"))
+                split_histos.append(rdf_mc.Define("weight_col", f"{weight_far_right}").Filter(f"mctruth == {key} && deltaT > 30").Histo1D(hmodel, self.var, "weight_col"))
+
+                split_histos[0].Add(split_histos[1].GetPtr())
+                split_histos[0].Add(split_histos[2].GetPtr())
+                split_histos[0].Add(split_histos[3].GetPtr())
+
+                self.histos[chann] = split_histos[0]
             else:
-                self.histos[chann] = rdf_mc.Filter(f"mctruth == {key}").Histo1D(hmodel, self.var)
+                weight = self.scale_map.get(chann, 1.0)
+                self.histos[chann] = rdf_mc.Define("weight_col", f"{weight}").Filter(f"mctruth == {key}").Histo1D(hmodel, self.var, "weight_col")
 
         self.histos["MC sum"] = self._hist_model.make_empty_th(suffix="MC sum")
         self._mc_sum_built = False
@@ -78,6 +97,53 @@ class MultiChannelHist:
         self._rescale_weighted_signal()
         self._build_mc_sum()
         return self
+
+    def _resolution_fitter(self):
+        """Custom fitter for resolution histograms."""
+
+        # Get the resolution histogram for Signal
+        h = self.histos["MC sum"]
+
+        if not h:
+          return (None,) * 9
+
+        hp = h.GetPtr() if hasattr(h, 'GetPtr') else h
+
+        # Fit with a Gaussian (or any other suitable function)
+        double_gaus = ROOT.TF1("double_gaus", ROOT.double_gaus, hp.GetXaxis().GetXmin(), hp.GetXaxis().GetXmax(), 5)
+        double_gaus.SetParameters(hp.GetMaximum(), hp.GetRMS(), hp.GetMaximum()/2, hp.GetRMS()*2, hp.GetMean())
+        double_gaus.SetParLimits(1, 0.01 * hp.GetRMS(), 10 * hp.GetRMS())  # sigma_core limits
+        double_gaus.SetParLimits(3, 0.01 * hp.GetRMS(), 20 * hp.GetRMS())  # sigma_tail limits
+
+        double_gaus.SetParNames("A_core", "sigma_core", "A_tail", "sigma_tail", "mean")
+        fit_result = hp.Fit(double_gaus, "S")
+        if fit_result.IsValid():
+            chi2 = fit_result.Chi2()
+            ndf = fit_result.Ndf()
+            mean = fit_result.Parameter(4)
+            mean_err = fit_result.ParError(4)
+            sigma_core = fit_result.Parameter(1)
+            sigma_core_err = fit_result.ParError(1)
+            sigma_tail = fit_result.Parameter(3)
+            sigma_tail_err = fit_result.ParError(3)
+            print(f"Fitted resolution: mean={mean:.3f} ± {mean_err:.3f}, sigma_core={sigma_core:.3f} ± {sigma_core_err:.3f}, sigma_tail={sigma_tail:.3f} ± {sigma_tail_err:.3f}, chi2/ndf={chi2}/{ndf}")
+
+            # 5. Bezpieczne zwracanie wyników
+        if fit_result and fit_result.IsValid():
+          return (
+            fit_result.Parameter(1), # sigma_core
+            fit_result.ParError(1),  # sigma_core_err
+            fit_result.Parameter(3), # sigma_tail
+            fit_result.ParError(3),  # sigma_tail_err
+            fit_result.Parameter(4), # mean
+            fit_result.ParError(4),  # mean_err
+            fit_result.Chi2(),       # chi2
+            fit_result.Ndf(),        # ndf
+            double_gaus
+          )
+        else:
+          print(f"Warning: Fit failed for {hp.GetName()}. Returning null results.")
+          return (None,) * 9
 
     def _rescale_weighted_signal(self):
         """If Signal was weighted, rescale so integral matches original entry count."""
@@ -90,7 +156,8 @@ class MultiChannelHist:
             return
         original_entries = self._signal_rdf.Count().GetValue()
         if original_entries > 0:
-            hp.Scale(original_entries / integral)
+            weight = self.scale_map.get("Signal", 1.0)
+            hp.Scale(weight * original_entries / integral)
 
     def _build_mc_sum(self):
         if self._mc_sum_built:
@@ -181,11 +248,101 @@ class MultiChannelHist:
                 elif hm.log_y:
                     h.SetMinimum(0.1)
 
+                if hm.resolution and chann == "MC sum":
+                    result = self._resolution_fitter()
+
+                    if result[0] is not None:
+
+                      if result[0] < result[2]:
+                          sigma_core = result[0]
+                          sigma_tail = result[2]
+                          sigma_core_err = result[1]
+                          sigma_tail_err = result[3]
+                      else:
+                          sigma_core = result[2]
+                          sigma_tail = result[0]
+                          sigma_core_err = result[3]
+                          sigma_tail_err = result[1]
+
+                      mean = result[4]
+                      mean_err = result[5]
+
+                      chi2 = result[6]
+                      ndf = result[7]
+
+                      # Tworzymy tabelkę z parametrami (TPaveText)
+                      # Współrzędne: x1, y1, x2, y2 (w jednostkach NDC: 0-1)
+                      # Umieszczamy ją poniżej legendy (legenda zazwyczaj kończy się na ~0.65)
+                      pave = ROOT.TPaveText(0.65, 0.40, 0.88, 0.63, "NDC")
+                      pave.SetFillColor(0)
+                      pave.SetTextAlign(12) # wyrównanie do lewej
+                      pave.SetTextFont(42)
+                      pave.SetTextSize(0.025)
+                      pave.SetBorderSize(1)
+
+                      pave.AddText(f"Mean: {mean:.3f} #pm {mean_err:.3f}")
+                      pave.AddText(f"#sigma_{{core}}: {sigma_core:.3f} #pm {sigma_core_err:.3f}")
+                      pave.AddText(f"#sigma_{{tail}}: {sigma_tail:.3f} #pm {sigma_tail_err:.3f}")
+                      pave.AddText(f"#chi^{{2}} / ndf: {chi2:.1f} / {ndf}")
+                      
+                      pave.Draw()
+
+                      result[-1].SetLineColor(ROOT.kRed)
+                      result[-1].SetLineWidth(2)
+                      result[-1].Draw("SAME")
+                    else:
+                      print(f"Resolution fit failed for {chann}. No curve will be drawn.")
+
                 first = False
             else:
                 h.Draw("PE1SAME" if is_data else "HISTSAME")
 
-            legend.AddEntry(h, chann, "lp" if is_data else "l")
+                if hm.resolution and chann == "MC sum":
+                    result = self._resolution_fitter()
+
+                    if result[0] is not None:
+
+                      if result[0] < result[2]:
+                          sigma_core = result[0]
+                          sigma_tail = result[2]
+                          sigma_core_err = result[1]
+                          sigma_tail_err = result[3]
+                      else:
+                          sigma_core = result[2]
+                          sigma_tail = result[0]
+                          sigma_core_err = result[3]
+                          sigma_tail_err = result[1]
+
+                      mean = result[4]
+                      mean_err = result[5]
+
+                      chi2 = result[6]
+                      ndf = result[7]
+
+                      # Tworzymy tabelkę z parametrami (TPaveText)
+                      # Współrzędne: x1, y1, x2, y2 (w jednostkach NDC: 0-1)
+                      # Umieszczamy ją poniżej legendy (legenda zazwyczaj kończy się na ~0.65)
+                      pave = ROOT.TPaveText(0.65, 0.40, 0.88, 0.63, "NDC")
+                      pave.SetFillColor(0)
+                      pave.SetTextAlign(12) # wyrównanie do lewej
+                      pave.SetTextFont(42)
+                      pave.SetTextSize(0.025)
+                      pave.SetBorderSize(1)
+
+                      pave.AddText(f"Mean: {mean:.3f} #pm {mean_err:.3f}")
+                      pave.AddText(f"#sigma_{{core}}: {sigma_core:.3f} #pm {sigma_core_err:.3f}")
+                      pave.AddText(f"#sigma_{{tail}}: {sigma_tail:.3f} #pm {sigma_tail_err:.3f}")
+                      pave.AddText(f"#chi^{{2}} / ndf: {chi2:.1f} / {ndf}")
+                      
+                      pave.Draw()
+
+                      result[-1].SetLineColor(ROOT.kRed)
+                      result[-1].SetLineWidth(2)
+                      result[-1].Draw("SAME")
+                    else:
+                      print(f"Resolution fit failed for {chann}. No curve will be drawn.")
+
+            legend.AddEntry(h, f"{chann} ({int(h.Integral(0, h.GetNbinsX() + 1))})", "lp" if is_data else "l")
 
         legend.Draw()
 

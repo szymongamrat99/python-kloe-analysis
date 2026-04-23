@@ -27,6 +27,7 @@ class MultiChannelHist2D:
 
         var_x = hist_model.var
         var_y = hist_model.var_y
+        weight = hist_model.weight
 
         for key, chann in channName.items():
             if chann == "MC sum":
@@ -35,10 +36,15 @@ class MultiChannelHist2D:
             hmodel = hist_model.make_root_model(suffix=chann)
 
             if chann == "Data":
-                self.histos[chann] = rdf_data.Histo2D(hmodel, var_x, var_y)
+                    self.histos[chann] = rdf_data.Histo2D(hmodel, var_x, var_y)
             else:
-                self.histos[chann] = rdf_mc.Filter(f"mctruth == {key}").Histo2D(
-                    hmodel, var_x, var_y)
+                rdf_ch = rdf_mc.Filter(f"mctruth == {key}")
+                if weight and key == 1:
+                    self.histos[chann] = rdf_ch.Histo2D(hmodel, var_x, var_y, weight)
+                else:
+                    self.histos[chann] = rdf_ch.Histo2D(hmodel, var_x, var_y)
+
+        self.histos["Signal"].Scale(self.histos["Signal"].GetEntries() / self.histos["Signal"].Integral(0, self.histos["Signal"].GetNbinsX() + 1, 0, self.histos["Signal"].GetNbinsY() + 1))
 
         self._built = False
 

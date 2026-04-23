@@ -5,7 +5,8 @@
       "const.h",
       "ErrorLogs.h",
       "kloe_class.h",
-      "interf_function.h"
+      "interf_function.h",
+      "double_gaus.h"
     ],
     "libraries": [
       "libcurl",

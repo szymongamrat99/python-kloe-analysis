@@ -6,5 +6,20 @@
     "interference_weight": "wrap_interf_function(deltaT_MC) / wrap_double_exponential(deltaT_MC)",
     "deltaPhiv": "abs(Phiv1 - Phiv2)",
     "pi01_mass": "pi01Fit[5]",
-    "pi02_mass": "pi02Fit[5]"
-}
+    "pi02_mass": "pi02Fit[5]",
+    "Kchrec_mass_centered": "Kchrec[5] - PhysicsConstants::mK0",
+    "Knerec_mass_centered": "minv4gam - PhysicsConstants::mK0",
+    "Knerec_six_mass_centered": "KnerecSix[5] - PhysicsConstants::mK0",
+    "cosAngleTrk1Kch": "cos(vec3Angle(trk1Fit[0], trk1Fit[1], trk1Fit[2], KchrecFit[0], KchrecFit[1], KchrecFit[2]))",
+    "cosAngleTrk2Kch": "cos(vec3Angle(trk2Fit[0], trk2Fit[1], trk2Fit[2], KchrecFit[0], KchrecFit[1], KchrecFit[2]))",
+    "radius_00_pm": "sqrt(pow(KnerecFit[6] - KchrecFit[6], 2) + pow(KnerecFit[7] - KchrecFit[7], 2))",
+    "z_00_pm": "abs(KnerecFit[8] - KchrecFit[8])",
+    "rho_pm": "sqrt(pow(KchrecFit[6] - ipFit[0], 2) + pow(KchrecFit[7] - ipFit[1], 2))",
+    "rho_00": "sqrt(pow(KnerecFit[6] - ipFit[0], 2) + pow(KnerecFit[7] - ipFit[1], 2))",
+    "rho": "sqrt(pow(rho_pm,2) + pow(rho_00,2))",
+    "radius_00": "sqrt(pow(KnerecFit[6] - ipFit[0], 2) + pow(KnerecFit[7] - ipFit[1], 2))",
+    "radius_pm": "sqrt(pow(KchrecFit[6] - ipFit[0], 2) + pow(KchrecFit[7] - ipFit[1], 2))",
+    "z_00": "KnerecFit[8] - ipFit[2]",
+    "z_pm": "KchrecFit[8] - ipFit[2]",
+    "deltaT_resolution": "deltaT - deltaT_MC"
+  }

@@ -25,6 +25,9 @@ class HistModel:
 
         # Weighting
         self.weight = config.get("weight", None)
+        
+        # Is Resolution plot?
+        self.resolution = config.get("resolution", False)
 
         # 2D-specific
         if self.dim == 2:
