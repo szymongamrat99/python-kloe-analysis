@@ -60,6 +60,17 @@ class MultiChannelHist:
 
             hmodel = self._hist_model.make_root_model(suffix=chann)
 
+            # --- NOWA LOGIKA ZABEZPIECZAJĄCA ---
+            # Jeśli model to 'resolution', akceptujemy tylko MC (mctruth 0 lub 1)
+            is_resolution = getattr(self._hist_model, 'resolution', False)
+            
+            if is_resolution and chann == "Data":
+                # Tworzymy pusty histogram dla 'Data', żeby uniknąć błędów KeyErrro w draw()
+                # ale nie przypisujemy mu żadnych danych z rdf_data
+                self.histos[chann] = self._hist_model.make_empty_th(suffix=chann)
+                continue
+            # -----------------------------------
+
             if chann == "Data":
                 self.histos[chann] = rdf_data.Histo1D(hmodel, self.var)
             elif chann == "Signal" and self._hist_model.weight:

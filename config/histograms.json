@@ -1,15 +1,253 @@
 {
+    "ScatDev": {
+        "var": "ScatDev",
+        "title": "Scattering Plane Deviation; #delta_{plane} [-]; Entries",
+        "nbins": 50,
+        "xmin": -1,
+        "xmax": 1,
+        "filter": "",
+        "log_y": false,
+        "legend_pos": [0.55, 0.65, 0.88, 0.88],
+        "weight": "interference_weight"
+    },
+    "chi2": {
+        "var": "Chi2SignalKinFit",
+        "title": "Chi2 of the signal kinfit; #chi^{2} [-]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 100,
+        "filter": "",
+        "log_y": false,
+        "legend_pos": [0.55, 0.65, 0.88, 0.88],
+        "weight": "interference_weight"
+    },
+    "combined_Pi0": {
+        "var": "combined_Pi0",
+        "title": "Combined #pi^{0} mass; m [MeV]; Entries",
+        "nbins": 100,
+        "xmin": 0,
+        "xmax": 100,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "Kchrec_mass_centered": {
+        "var": "Kchrec_mass_centered",
+        "title": "; m^{inv}_{#pi^{+}#pi^{-}} - m_{K^{0}} [MeV/c^{2}]; Entries",
+        "nbins": 100,
+        "xmin": -10.0,
+        "xmax": 10.0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "Knerec_mass_centered": {
+        "var": "Knerec_mass_centered",
+        "title": "; m^{inv}_{4#gamma} - m_{K^{0}} [MeV/c^{2}]; Entries",
+        "nbins": 100,
+        "xmin": -120.0,
+        "xmax": 120.0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "deltaT_MC":
+     {
+        "var": "deltaT_MC",
+        "title": "Time difference MC Gen; t^{MC}_{ch} - t^{MC}_{ne} [#tau_{S}]; Entries",
+        "nbins": 101,
+        "xmin": -50,
+        "xmax": 50,
+        "filter": "(mctruth == 1)",
+        "weight": "interference_weight"
+    },
+    "deltaT":
+     {
+        "var": "deltaT",
+        "title": "Time difference; t^{fit}_{ch} - t^{fit}_{ne} [#tau_{S}]; Entries",
+        "nbins": 101,
+        "xmin": -50,
+        "xmax": 50,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "rho":
+     {
+        "var": "rho",
+        "title": "; #rho [cm]; Entries",
+        "nbins": 51,
+        "xmin": 0,
+        "xmax": 20,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "radius_00":
+     {
+        "var": "radius_00",
+        "title": "; R_{00,IP} [cm]; Entries",
+        "nbins": 50,
+        "xmin": 0,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "radius_pm":
+     {
+        "var": "radius_pm",
+        "title": "; R_{+-,IP} [cm]; Entries",
+        "nbins": 50,
+        "xmin": 0,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "z_00":
+     {
+        "var": "z_00",
+        "title": "; z_{00} - z_{IP} [cm]; Entries",
+        "nbins": 50,
+        "xmin": -5,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "z_pm":
+     {
+        "var": "z_pm",
+        "title": "; z_{+-} - z_{IP} [cm]; Entries",
+        "nbins": 50,
+        "xmin": -5,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "bestErrorSixGamma":
+     {
+        "var": "bestErrorSixGamma",
+        "title": "; Best Error Six Gamma [cm]; Entries",
+        "nbins": 101,
+        "xmin": 0,
+        "xmax":3000,
+        "ymin_display": 0,
+        "filter": "",
+        "log_y": false,
+        "weight": "interference_weight"
+    },
     "deltaT_resolution":
      {
         "var": "deltaT_resolution",
         "title": "; #Deltat^{fit} - #Deltat^{MC} [#tau_{S}]; Entries",
         "nbins": 51,
         "xmin": -9.0,
-        "xmax":9.0,
+        "xmax": 9.0,
         "ymin_display": 0,
-        "filter": "(mctruth == 1)",
+        "filter": "(mctruth == 1 || mctruth == 0)",
         "log_y": false,
         "weight": "interference_weight",
         "resolution": true
+    },
+    "mass_kne_six": {
+      "var": "Knerec_six_mass_centered",
+      "title": "; m^{inv}_{6#gamma} - m_{K^{0}} [MeV/c^{2}]; Entries",
+      "nbins": 201,
+      "xmin": -400,
+      "xmax": 500,
+      "ymin_display": 0,
+      "filter": "",
+      "log_y": false,
+      "weight": "interference_weight"
+    },
+    "Qmiss": {
+      "var": "Qmiss",
+      "title": "; Q_{miss} [MeV]; Entries",
+      "nbins": 51,
+      "xmin": 0,
+      "xmax": 10,
+      "ymin_display": 0.1,
+      "filter": "",
+      "log_y": true,
+      "weight": "interference_weight"
+    },
+    "pi0_mass_2d": {
+        "dim": 2,
+        "var": "pi01_mass",
+        "var_y": "pi02_mass",
+        "title": "#pi^{0} masses; m_{#pi^{0}_{1}} [MeV]; m_{#pi^{0}_{2}} [MeV]",
+        "nbins": 100,
+        "xmin": 50,
+        "xmax": 250,
+        "nbins_y": 100,
+        "ymin": 50,
+        "ymax": 250,
+        "weight": "interference_weight"
+    },
+    "cos_angle_trk_kch": {
+        "dim": 2,
+        "var": "cosAngleTrk1Kch",
+        "var_y": "cosAngleTrk2Kch",
+        "title": "Cosine of angle between track and Kch; cos(#theta_{trk1,Kch}); cos(#theta_{trk2,Kch})",
+        "nbins": 100,
+        "xmin": -1,
+        "xmax": 1,
+        "nbins_y": 100,
+        "ymin": -1,
+        "ymax": 1,
+        "weight": "interference_weight"
+    },
+    "deltaT_vs_deltaT_MC": {
+        "dim": 2,
+        "var": "deltaT_MC",
+        "var_y": "deltaT",
+        "title": "; t^{MC}_{ch} - t^{MC}_{ne} [#tau_{S}]; t^{fit}_{ch} - t^{fit}_{ne} [#tau_{S}]",
+        "nbins": 601,
+        "xmin": -300,
+        "xmax": 300,
+        "nbins_y": 601,
+        "ymin": -300,
+        "ymax": 300,
+        "weight": "interference_weight",
+        "filter":"mcflag == 1 && (mctruth == 1 || mctruth == 0)"
+    },
+    "mass_kne_six_vs_mass_kne": {
+        "dim": 2,
+        "var": "Knerec_mass_centered",
+        "var_y": "Knerec_six_mass_centered",
+        "title": "; m^{inv}_{4#gamma} - m_{K^{0}} [MeV/c^{2}]; m^{inv}_{6#gamma} - m_{K^{0}} [MeV/c^{2}]",
+        "nbins": 201,
+        "xmin": -400,
+        "xmax": 500,
+        "nbins_y": 201,
+        "ymin": -400,
+        "ymax": 500,
+        "weight": "interference_weight"
+    },
+    "mass_kne_six_vs_best_error_six_gamma": {
+        "dim": 2,
+        "var": "Knerec_six_mass_centered",
+        "var_y": "bestErrorSixGamma",
+        "title": "; m^{inv}_{6#gamma} - m_{K^{0}} [MeV/c^{2}]; Best Error Six Gamma [cm]",
+        "nbins": 51,
+        "xmin": -400,
+        "xmax": 500,
+        "nbins_y": 51,
+        "ymin": 0,
+        "ymax": 3000,
+        "weight": "interference_weight"
+    },
+    "mass_kne_vs_best_error_six_gamma": {
+        "dim": 2,
+        "var": "Knerec_mass_centered",
+        "var_y": "bestErrorSixGamma",
+        "title": "; m^{inv}_{4#gamma} - m_{K^{0}} [MeV/c^{2}]; Best Error Six Gamma [cm]",
+        "nbins": 51,
+        "xmin": -200,
+        "xmax": 200,
+        "nbins_y": 51,
+        "ymin": 0,
+        "ymax": 3000,
+        "weight": "interference_weight"
     }
 }

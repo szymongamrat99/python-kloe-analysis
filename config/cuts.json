@@ -1,0 +1,76 @@
+{
+  "scenarios":
+  {
+    "optimal":
+    {
+      "name": "Optimal selection",
+      "cuts":
+      [
+        {
+          "variable": "Chi2SignalKinFit",
+          "operator": "<",
+          "value": 30.0,
+          "active": true,
+          "order": 0
+        },
+        {
+          "variable": "Kchrec_mass_centered",
+          "operator": "abs_lt",
+          "value": 2.637,
+          "active": true,
+          "order": 1
+        },
+        {
+          "variable": "u",
+          "operator": "abs_lt",
+          "active": true,
+          "order": 2,
+          "value": 8.085754304
+        },
+        {
+          "variable": "v",
+          "operator": "abs_lt",
+          "active": true,
+          "order": 2,
+          "value": 11.514665004
+        },
+        {
+          "variable": "cosAngleTrk1Kch",
+          "operator": "abs_lt",
+          "value": 0.8,
+          "active": true,
+          "order": 3,
+          "apply_only_in": "PM_00_IP_CLOSE"
+        },
+        {
+          "variable": "cosAngleTrk2Kch",
+          "operator": "abs_lt",
+          "value": 0.8,
+          "active": true,
+          "order": 3,
+          "apply_only_in": "PM_00_IP_CLOSE"
+        },
+        {
+          "variable": "rho",
+          "operator": ">",
+          "value": 0.8,
+          "active": true,
+          "order": 4,
+          "apply_only_in": "PM_00_CLOSE"
+        }
+      ]
+    }
+  },
+  "fiducial_volumes": {
+    "PM_00_CLOSE": [
+      { "variable": "radius_00_pm", "operator": "abs_lt", "value": 2.05, "order": 0, "active": true },
+      { "variable": "z_00_pm", "operator": "abs_lt", "value": 2.45, "order": 0, "active": true }
+    ],
+    "PM_00_IP_CLOSE": [
+      { "variable": "z_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
+      { "variable": "z_pm", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
+      { "variable": "radius_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
+      { "variable": "radius_pm", "operator": "abs_lt", "value": 2.0, "order": 0, "active": true }
+    ]
+  }
+}

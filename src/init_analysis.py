@@ -16,6 +16,8 @@ from lib.hist.hist_archive import HistArchive
 from lib.rdf.column_definer import ColumnDefiner
 from lib.hist.efficiency_purity_calculator import EfficiencyPurityCalculator
 
+from lib.cuts.cut_evaluation import CutEvaluation
+
 # Load of the initial declarations from the config file
 #-----------------------------------------
 path_to_config = os.path.join(os.path.dirname(__file__), "..", "config", "config.json")
@@ -80,20 +82,37 @@ double vec3Angle(double x1, double y1, double z1,
 }
 """)
 
+ROOT.gInterpreter.Declare("""
+#include <TVector3.h>
+#include <cmath>
+
+// Oblicza odchylenie od płaszczyzny rozproszenia (iloczyn mieszany)
+// px_in, py_in, pz_in - pęd K_L przed zderzeniem (z IP do punktu regeneracji)
+// px_out, py_out, pz_out - pęd K_S po zderzeniu (zrekonstruowany z pionów)
+// vx, vy, vz - wektor położenia punktu regeneracji (vertex)
+double scatteringPlaneDeviation(double px_in, double py_in, double pz_in,
+                               double px_out, double py_out, double pz_out,
+                               double vx, double vy, double vz) {
+    TVector3 p_in(px_in, py_in, pz_in);
+    TVector3 p_out(px_out, py_out, pz_out);
+    TVector3 r_vtx(vx, vy, vz);
+
+    // Normalna do płaszczyzny wyznaczonej przez kierunek dolotowy i punkt vertex
+    TVector3 normal = p_in.Cross(r_vtx);
+
+    if (normal.Mag() < 1e-9) return 0.0; // Unikamy dzielenia przez zero (zderzenie centralne)
+
+    // Znormalizowany rzut pędu wyjściowego na normalną płaszczyzny
+    // Wartość bliska 0 oznacza, że p_out leży w tej samej płaszczyźnie co p_in i r_vtx
+    return (p_out.Dot(normal)) / (p_out.Mag() * normal.Mag());
+}
+""")
+
 columns_config = os.path.join(os.path.dirname(__file__), "..", "config", "columns.json")
 rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 
 # Load histogram models from config
 hist_models = HistModelLoader(os.path.join(os.path.dirname(__file__), "..", "config", "histograms.json"))
-
-chi2Cut = 30.0
-mPiChCut = 2.637
-mCombPi0Cut = 10.
-mPiNeCut = 76.
-qMissCut = 3.75
-bestErrorSixGammaCut = 1000.0
-
-Kchrec_mass_mean = 497.605
 
 # Cuts on pi0-plane
 pi0Mass1_mean = 134.83240924168848
@@ -102,59 +121,18 @@ pi0Mass2_mean = 134.87134080668446
 pi0Mass2_sigma = 3.22758797811996
 rho = -0.3399659203793453
 
-u_cut = 8.085754304
-v_cut = 11.514665004
-
 u_column = f"((pi01Fit[5] - {pi0Mass1_mean}) + (pi02Fit[5] - {pi0Mass2_mean})) / sqrt(2)"
 v_column = f"((pi01Fit[5] - {pi0Mass1_mean}) - (pi02Fit[5] - {pi0Mass2_mean})) / sqrt(2)"
 
-# Cut for resolution improvement
-radius_00_limit = 1.5
-radius_pm_limit = 2.0
-z_00_limit = 1.5
-z_pm_limit = 1.5
-
-fiducial_Volume_Close = f"radius_00 < {radius_00_limit} && z_00 < {z_00_limit} && radius_pm < {radius_pm_limit} && z_pm < {z_pm_limit}"
-
-# Cut for omega-pi0 rejection
-radius_00_pm_limit = 2.05
-z_00_pm_limit = 2.45
-
-fiducial_Volume_Omega = f"radius_00_pm < {radius_00_pm_limit} && z_00_pm < {z_00_pm_limit}"
-
-# Angle between trk and Kchrec
-angle_trk1_kchrec_limit = 0.8
-angle_trk2_kchrec_limit = 0.8
-# ---
-#Rho pm
-rho_limit = 0.8
 # ---
 # Definition of columns
 rdf = rdf.Define("u", u_column).Define("v", v_column)
 
-# Cut list
-single_cuts = {
-                f"Chi2SignalKinFit < {chi2Cut}": True,
-                f"abs(Kchrec_mass_centered) < {mPiChCut}": True,
-                f"abs(u) < {u_cut}": True,
-                f"abs(v) < {v_cut}": True,
-                f"(({fiducial_Volume_Close} && (abs(cosAngleTrk1Kch) < {angle_trk1_kchrec_limit} && abs(cosAngleTrk2Kch) < {angle_trk2_kchrec_limit})) || !({fiducial_Volume_Close}))": True,
-                f"(({fiducial_Volume_Omega} && rho > {rho_limit}) || !({fiducial_Volume_Omega}))": True,
-                f"abs(Knerec_mass_centered) < {mPiNeCut}": True,
-                f"Qmiss < {qMissCut}": False,
-                f"bestErrorSixGamma > {bestErrorSixGammaCut}": False
-              }
+# ---
+CUTS_PATH = os.path.join(os.path.dirname(__file__), "..", "config", "cuts.json")
+eval_cuts = CutEvaluation(CUTS_PATH)
 
-# Build list of enabled cuts (preserving order)
-enabled_cuts = [cut for cut, enabled in single_cuts.items() if enabled]
-
-
-def build_global_filter(cuts):
-    """Build a global filter string from a list of cut expressions."""
-    if not cuts:
-        return ""
-    return "(" + " && ".join(f"({c})" for c in cuts) + ")"
-
+print(eval_cuts.get_all_cuts("optimal"))
 
 def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
     """Run the full analysis (efficiency, purity, histograms) with a given filter."""
@@ -197,10 +175,12 @@ def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
         print(f"  - Single bad cluster: {single_bad_cluster[err_name]}")
         print()
 
-    total_true, selected_true, true_selected, selected_count, efficiency, purity = eff_pur_calculator.calculate_efficiency_purity(selection=global_filter)
+    total_true, selected_true, true_selected, selected_count, efficiency, purity, total_true_near_zero, selected_true_near_zero, true_selected_near_zero, selected_count_near_zero, efficiency_near_zero, purity_near_zero = eff_pur_calculator.calculate_efficiency_purity(selection=global_filter)
 
     print(f"Efficiency: {efficiency:.4f} ({selected_true}/{total_true})")
     print(f"Purity: {purity:.4f} ({true_selected}/{selected_count})")
+    print(f"Efficiency (|deltaT| < 15): {efficiency_near_zero:.4f} ({selected_true_near_zero}/{total_true_near_zero})")
+    print(f"Purity (|deltaT| < 15): {purity_near_zero:.4f} ({true_selected_near_zero}/{selected_count_near_zero})")
 
     efficiency_hist = eff_pur_calculator.efficiency_histo_per_time_difference(selection=global_filter)
 
@@ -287,22 +267,46 @@ def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
 mode = int(sys.argv[1]) if len(sys.argv) > 1 else 2
 
 if mode == 1:
-    # Sequential cuts: run analysis adding one cut at a time
-    print("=== MODE 1: Sequential cuts ===\n")
-    for i in range(1, len(enabled_cuts) + 1):
-        cuts_subset = enabled_cuts[:i]
-        gf = build_global_filter(cuts_subset)
-        folder_name = f"step_{i:02d}_cuts_{i}"
+    print("=== MODE 1: Sequential cuts (Cut-Flow) ===\n")
+    
+    scenario_name = "optimal"
+    scenario = eval_cuts.config.scenarios[scenario_name]
+    
+    # Pobieramy unikalne i posortowane numery 'order' obecne w tym scenariuszu
+    unique_orders = sorted(list(set(c.order for c in scenario.active_cuts)))
+    
+    cumulative_cuts = []
+
+    for i, order_val in enumerate(unique_orders, 1):
+        # Pobieramy gotowy string dla danego kroku (może zawierać wiele cięć, np. u i v)
+        # Metoda get_single_cut automatycznie obsłuży Fiducial Volumes!
+        step_filter = eval_cuts.get_single_cut(scenario_name, order_val)
+        
+        if not step_filter:
+            continue
+            
+        cumulative_cuts.append(step_filter)
+        
+        # Łączymy dotychczasowe kroki w jeden globalny filtr
+        gf = " && ".join(cumulative_cuts)
+        
+        # Nazwa folderu na podstawie zmiennych w tym kroku
+        # (Dla czytelności wyciągamy nazwy zmiennych z obiektów)
+        vars_in_step = "_".join([c.variable for c in scenario.active_cuts if c.order == order_val])
+        folder_name = f"step_{i:02d}_{vars_in_step}"
+        
         print(f"\n{'='*60}")
-        print(f"Step {i}/{len(enabled_cuts)}: applying cuts 1..{i}")
-        print(f"Filter: {gf}")
+        print(f"Step {i}/{len(unique_orders)} (Order {order_val}): Adding {vars_in_step}")
+        print(f"Total Filter: {gf}")
         print(f"{'='*60}\n")
+        
+        # Uruchomienie analizy na RDataFrame (rdf)
         run_analysis(rdf, gf, img_dir, output_suffix=folder_name)
 
 elif mode == 2:
     # Combined filter: all enabled cuts at once (original behavior)
     print("=== MODE 2: Combined global filter ===\n")
-    global_filter = build_global_filter(enabled_cuts)
+    global_filter = eval_cuts.get_all_cuts("optimal")
     print(f"Filter: {global_filter}\n")
     run_analysis(rdf, global_filter, img_dir)
 

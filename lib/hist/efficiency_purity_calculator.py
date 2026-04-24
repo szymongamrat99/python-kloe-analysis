@@ -104,11 +104,36 @@ class EfficiencyPurityCalculator:
 
     selected = self.rdfMC.Filter(bkg_selection).Count().GetValue()
 
+    # ---
+
+    # Count near 0
+    selection = f"{selection} && abs(deltaT) < 15" if selection else "(abs(deltaT) < 15)"
+
+    comb_total_selection = selection + " && " + self.combined_truth_condition if selection else self.truth_condition
+
+    comb_selection = selection + " && " + self.truth_condition if selection else self.truth_condition
+
+    bkg_selection = selection + " && " + "!" + self.truth_condition_before_cut if selection else "!" + self.truth_condition_before_cut
+
+    # Count total true events
+    total_true_near_zero = self.rdfMC.Filter("abs(deltaT) < 15 && " + self.combined_truth_condition).Count().GetValue()
+
+    # Count selected events
+    selected_true_near_zero = self.rdfMC.Filter(comb_total_selection).Count().GetValue()
+
+    # Count true events that are selected
+    true_selected_near_zero = self.rdfMC.Filter(comb_selection).Count().GetValue()
+
+    selected_near_zero = self.rdfMC.Filter(bkg_selection).Count().GetValue()
+
     # Calculate efficiency and purity
     efficiency = selected_true / total_true if total_true > 0 else 0
     purity = true_selected / selected if selected > 0 else 0
 
-    return total_true, selected_true, true_selected, selected, efficiency, purity
+    efficiency_near_zero = selected_true_near_zero / total_true_near_zero if total_true_near_zero > 0 else 0
+    purity_near_zero = true_selected_near_zero / selected_near_zero if selected_near_zero > 0 else 0
+
+    return total_true, selected_true, true_selected, selected, efficiency, purity, total_true_near_zero, selected_true_near_zero, true_selected_near_zero, selected_near_zero, efficiency_near_zero, purity_near_zero
 
   def calculate_preselection_eff(self, err_codes: dict[str, int]):
 

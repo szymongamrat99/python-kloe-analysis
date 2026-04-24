@@ -21,5 +21,6 @@
     "radius_pm": "sqrt(pow(KchrecFit[6] - ipFit[0], 2) + pow(KchrecFit[7] - ipFit[1], 2))",
     "z_00": "KnerecFit[8] - ipFit[2]",
     "z_pm": "KchrecFit[8] - ipFit[2]",
-    "deltaT_resolution": "deltaT - deltaT_MC"
+    "deltaT_resolution": "deltaT - deltaT_MC",
+    "ScatDev": "scatteringPlaneDeviation(Knerec[0], Knerec[1], Knerec[2], KnetriKinFit[0], KnetriKinFit[1], KnetriKinFit[2], KnetriKinFit[6] - ipTriKinFit[0], KnetriKinFit[7] - ipTriKinFit[1], KnetriKinFit[8] - ipTriKinFit[2])"
   }
