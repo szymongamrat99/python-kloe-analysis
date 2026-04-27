@@ -75,7 +75,7 @@
         "title": "; #rho [cm]; Entries",
         "nbins": 51,
         "xmin": 0,
-        "xmax": 20,
+        "xmax": 5,
         "ymin_display": 0,
         "filter": "",
         "weight": "interference_weight"
@@ -97,6 +97,28 @@
         "title": "; R_{+-,IP} [cm]; Entries",
         "nbins": 50,
         "xmin": 0,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "radius_00_pm":
+     {
+        "var": "radius_00_pm",
+        "title": "; R_{00,+-} [cm]; Entries",
+        "nbins": 50,
+        "xmin": 0,
+        "xmax": 5,
+        "ymin_display": 0,
+        "filter": "",
+        "weight": "interference_weight"
+    },
+    "z_00_pm":
+     {
+        "var": "z_00_pm",
+        "title": "; z_{00} - z_{+-} [cm]; Entries",
+        "nbins": 50,
+        "xmin": -5,
         "xmax": 5,
         "ymin_display": 0,
         "filter": "",

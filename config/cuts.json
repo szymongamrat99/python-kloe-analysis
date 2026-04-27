@@ -40,7 +40,7 @@
           "value": 0.8,
           "active": true,
           "order": 3,
-          "apply_only_in": "PM_00_IP_CLOSE"
+          "apply_only_in": "PM_00_CLOSE"
         },
         {
           "variable": "cosAngleTrk2Kch",
@@ -48,7 +48,7 @@
           "value": 0.8,
           "active": true,
           "order": 3,
-          "apply_only_in": "PM_00_IP_CLOSE"
+          "apply_only_in": "PM_00_CLOSE"
         },
         {
           "variable": "rho",
@@ -56,7 +56,7 @@
           "value": 0.8,
           "active": true,
           "order": 4,
-          "apply_only_in": "PM_00_CLOSE"
+          "apply_only_in": "PM_00_IP_CLOSE"
         }
       ]
     }
@@ -70,6 +70,10 @@
       { "variable": "z_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
       { "variable": "z_pm", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
       { "variable": "radius_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
+      { "variable": "radius_pm", "operator": "abs_lt", "value": 2.0, "order": 0, "active": true }
+    ],
+    "PM_CLOSE": [
+      { "variable": "z_pm", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
       { "variable": "radius_pm", "operator": "abs_lt", "value": 2.0, "order": 0, "active": true }
     ]
   }

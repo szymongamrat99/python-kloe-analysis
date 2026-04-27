@@ -12,6 +12,7 @@ class SingleCut(BaseModel):
     active: bool = True
     order: int = 0
     apply_only_in: Optional[str] = None
+    optimization_range: Optional[List[float]] = None
 
     def to_root_string(self, config: Optional['FullConfig'] = None) -> str:
         """Generuje string dla pojedynczego cięcia."""

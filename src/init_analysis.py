@@ -16,7 +16,8 @@ from lib.hist.hist_archive import HistArchive
 from lib.rdf.column_definer import ColumnDefiner
 from lib.hist.efficiency_purity_calculator import EfficiencyPurityCalculator
 
-from lib.cuts.cut_evaluation import CutEvaluation
+from lib.cuts.cut_evaluation import CutEvaluation, SingleCut
+from lib.cuts.cut_optimization import CutOptimization
 
 # Load of the initial declarations from the config file
 #-----------------------------------------
@@ -132,7 +133,6 @@ rdf = rdf.Define("u", u_column).Define("v", v_column)
 CUTS_PATH = os.path.join(os.path.dirname(__file__), "..", "config", "cuts.json")
 eval_cuts = CutEvaluation(CUTS_PATH)
 
-print(eval_cuts.get_all_cuts("optimal"))
 
 def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
     """Run the full analysis (efficiency, purity, histograms) with a given filter."""
@@ -146,12 +146,12 @@ def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
             f.write(f"Global filter:\n{global_filter}\n")
 
     scale_map = {
-      "Signal": 0.996761,
-      "Omega": 1.07463,
-      "Regeneration": [0.499798, 3.47319, 3.71238, 0.575271],
-      "3pi0": 0.782048,
+      "Signal": 1.0849,
+      "Omega": 1.234,
+      "Regeneration": [0.498, 3.56, 3.66, 0.571],
+      "3pi0": 0.891,
       "Semileptonic": 0.0,
-      "Other": 3.488
+      "Other": 0.0
     }
 
     # scale_map = {
@@ -310,6 +310,15 @@ elif mode == 2:
     print(f"Filter: {global_filter}\n")
     run_analysis(rdf, global_filter, img_dir)
 
+elif mode == 3:
+    # Efficiency vs Purity optimization plot for a single cut
+    print("=== MODE 3: Efficiency vs Purity Optimization Plot ===\n")
+    cut_opt = CutOptimization(rdf)
+    global_filter = eval_cuts.get_all_cuts("optimal")
+    optimized_cut = SingleCut(variable="minv4gam", operator="abs_lt", value=0.0, optimization_range=[0.0, 100.0], bias = ROOT.PhysicsConstants.mK0)
+    
+    cut_opt.efficiency_purity_plot(prefix_cut=global_filter, optimized_cut=optimized_cut, num_points=10, graph_path=img_dir)
+
 else:
-    print(f"Unknown mode: {mode}. Use 1 (sequential) or 2 (combined).")
+    print(f"Unknown mode: {mode}. Use 1 (sequential), 2 (combined), or 3 (optimization).")
     sys.exit(1)
