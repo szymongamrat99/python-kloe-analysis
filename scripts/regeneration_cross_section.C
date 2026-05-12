@@ -389,9 +389,9 @@ void regeneration_cross_section(TString root_file_date)
     double highOff;
   };
   std::vector<PlotGroup> groups = {
-      {"R_Charged", (TH1F *)h_R_charged["Data"], (TH1F *)h_R_charged["MC sum"], (TH1F *)h_R_charged["Regeneration"], 10.0, 6.0, 6.0},
+      {"R_Charged", (TH1F *)h_R_charged["Data"], (TH1F *)h_R_charged["MC sum"], (TH1F *)h_R_charged["Regeneration"], 10.0, 4.0, 6.0},
       {"Rho_Charged", (TH1F *)h_rho_charged["Data"], (TH1F *)h_rho_charged["MC sum"], (TH1F *)h_rho_charged["Regeneration"], 25.0, 8.0, 8.0},
-      {"R_Neutral", (TH1F *)h_R_neutral["Data"], (TH1F *)h_R_neutral["MC sum"], (TH1F *)h_R_neutral["Regeneration"], 10.0, 6.0, 6.0},
+      {"R_Neutral", (TH1F *)h_R_neutral["Data"], (TH1F *)h_R_neutral["MC sum"], (TH1F *)h_R_neutral["Regeneration"], 10.0, 4.0, 6.0},
       {"Rho_Neutral", (TH1F *)h_rho_neutral["Data"], (TH1F *)h_rho_neutral["MC sum"], (TH1F *)h_rho_neutral["Regeneration"], 25.0, 8.0, 8.0}};
 
   for (auto &g : groups)
@@ -415,39 +415,69 @@ void regeneration_cross_section(TString root_file_date)
     f_weight->SetParameters(fData->GetParameter(0), fData->GetParameter(1), fData->GetParameter(2),
                             fMC->GetParameter(0), fMC->GetParameter(1), fMC->GetParameter(2));
 
+    // Determination of the maximal range
+    Double_t leftMaxData = abs(fData->GetParameter(1) - 3 * fData->GetParameter(2)), 
+             rightMaxData = abs(fData->GetParameter(1) + 3 * fData->GetParameter(2)),
+             leftMaxMC = abs(fMC->GetParameter(1) - 3 * fMC->GetParameter(2)), 
+             rightMaxMC = abs(fMC->GetParameter(1) + 3 * fMC->GetParameter(2)),
+             leftMax = 0.0, rightMax = 0.0;
+
+    if (leftMaxData < leftMaxMC) leftMax = leftMaxData; else leftMax = leftMaxMC;
+    if (rightMaxData > rightMaxMC) rightMax = rightMaxData; else rightMax = rightMaxMC;
+
     // Tworzenie TGraphErrors dla pasma błędów (Error Band)
     const int nPoints = 100;
     TGraphErrors *gr_band = new TGraphErrors(nPoints);
     double step = (resMC[1] - resMC[0]) / (nPoints - 1);
+
+    double yMaxFound = 0;
+    const double yAbsoluteLimit = 12.0; // "Bezpiecznik" dla osi Y
 
     for (int i = 0; i < nPoints; i++) {
         double x = resMC[0] + i * step;
         double valData = fData->GetParameter(0) * exp(-0.5 * pow((x - fData->GetParameter(1)) / fData->GetParameter(2), 2));
         double valMC   = fMC->GetParameter(0)   * exp(-0.5 * pow((x - fMC->GetParameter(1))   / fMC->GetParameter(2), 2));
         
-        if (valMC <= 0) continue;
+        if (valMC <= 1e-6) continue; 
         double ratio = valData / valMC;
 
-        // Propagacja błędu (uproszczona suma kwadratowa względnych błędów parametrów sygnału)
+        // Propagacja błędu
         double relErrData = fData->GetParError(0) / fData->GetParameter(0);
         double relErrMC   = fMC->GetParError(0)   / fMC->GetParameter(0);
         double totalErr   = ratio * std::sqrt(relErrData*relErrData + relErrMC*relErrMC);
 
         gr_band->SetPoint(i, x, ratio);
         gr_band->SetPointError(i, 0, totalErr);
+
+        // Szukanie optymalnego zakresu Y
+        double pointUpperEdge = ratio + totalErr;
+        if (pointUpperEdge > yMaxFound && pointUpperEdge < yAbsoluteLimit) {
+            yMaxFound = pointUpperEdge;
+        }
     }
 
     f_weight->SetTitle("Correction Factor W(" + g.name + ") with 1#sigma Band;" + g.name + ";W(x) = Data/MC");
     f_weight->SetLineColor(kRed);
     f_weight->SetLineWidth(2);
     f_weight->SetMinimum(0);
-    f_weight->SetMaximum(6.0); 
+    
+    // Ustawianie dynamicznego maksimum z marginesem
+    if (yMaxFound > 0) f_weight->SetMaximum(yMaxFound * 1.2);
+    else f_weight->SetMaximum(yAbsoluteLimit);
+
     f_weight->Draw("L");
 
     // Stylizacja i rysowanie pasma
     gr_band->SetFillColorAlpha(kRed - 7, 0.35);
     gr_band->SetMarkerSize(0);
     gr_band->Draw("E3 SAME");
+
+    // Bound lines
+    TLine *line_left = new TLine(leftMax, 0, leftMax, f_weight->GetMaximum());
+    TLine *line_right = new TLine(rightMax, 0, rightMax, f_weight->GetMaximum());
+
+    line_left->SetLineStyle(2); line_left->SetLineColor(kBlack); line_left->Draw();
+    line_right->SetLineStyle(2); line_right->SetLineColor(kBlack); line_right->Draw();
 
     TLegend *lw = new TLegend(0.15, 0.7, 0.45, 0.88);
     lw->SetTextSize(0.03);
