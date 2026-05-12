@@ -1,11 +1,8 @@
 {
-  "scenarios":
-  {
-    "optimal":
-    {
+  "scenarios": {
+    "optimal": {
       "name": "Optimal selection",
-      "cuts":
-      [
+      "cuts": [
         {
           "variable": "Chi2SignalKinFit",
           "operator": "<",
@@ -53,28 +50,84 @@
         {
           "variable": "rho",
           "operator": ">",
-          "value": 0.8,
+          "value": 1.5,
           "active": true,
           "order": 4,
           "apply_only_in": "PM_00_IP_CLOSE"
+        },
+        {
+          "variable": "distEllipse",
+          "value": 2.5,
+          "operator": ">",
+          "description": "Optimized ellipse for Knerec_mass_centered vs Knerec_six_mass_centered",
+          "active": true,
+          "order": 5
         }
       ]
     }
   },
   "fiducial_volumes": {
     "PM_00_CLOSE": [
-      { "variable": "radius_00_pm", "operator": "abs_lt", "value": 2.05, "order": 0, "active": true },
-      { "variable": "z_00_pm", "operator": "abs_lt", "value": 2.45, "order": 0, "active": true }
+      {
+        "variable": "radius_00_pm",
+        "operator": "abs_lt",
+        "value": 2.05,
+        "order": 0,
+        "active": true
+      },
+      {
+        "variable": "z_00_pm",
+        "operator": "abs_lt",
+        "value": 2.45,
+        "order": 0,
+        "active": true
+      }
     ],
     "PM_00_IP_CLOSE": [
-      { "variable": "z_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
-      { "variable": "z_pm", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
-      { "variable": "radius_00", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
-      { "variable": "radius_pm", "operator": "abs_lt", "value": 2.0, "order": 0, "active": true }
+      {
+        "variable": "z_00",
+        "operator": "abs_lt",
+        "value": 1.5,
+        "order": 0,
+        "active": true
+      },
+      {
+        "variable": "z_pm",
+        "operator": "abs_lt",
+        "value": 1.5,
+        "order": 0,
+        "active": true
+      },
+      {
+        "variable": "radius_00",
+        "operator": "abs_lt",
+        "value": 1.5,
+        "order": 0,
+        "active": true
+      },
+      {
+        "variable": "radius_pm",
+        "operator": "abs_lt",
+        "value": 2.0,
+        "order": 0,
+        "active": true
+      }
     ],
     "PM_CLOSE": [
-      { "variable": "z_pm", "operator": "abs_lt", "value": 1.5, "order": 0, "active": true },
-      { "variable": "radius_pm", "operator": "abs_lt", "value": 2.0, "order": 0, "active": true }
+      {
+        "variable": "z_pm",
+        "operator": "abs_lt",
+        "value": 1.5,
+        "order": 0,
+        "active": true
+      },
+      {
+        "variable": "radius_pm",
+        "operator": "abs_lt",
+        "value": 2.0,
+        "order": 0,
+        "active": true
+      }
     ]
   }
 }

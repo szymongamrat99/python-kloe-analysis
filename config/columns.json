@@ -22,5 +22,13 @@
     "z_00": "Knerec[8] - KchrecClosest[8]",
     "z_pm": "KchrecClosest[8] - Bz",
     "deltaT_resolution": "deltaT - deltaT_MC",
-    "ScatDev": "scatteringPlaneDeviation(Knerec[0], Knerec[1], Knerec[2], KnetriKinFit[0], KnetriKinFit[1], KnetriKinFit[2], KnetriKinFit[6] - ipTriKinFit[0], KnetriKinFit[7] - ipTriKinFit[1], KnetriKinFit[8] - ipTriKinFit[2])"
+    "deltaT_MC_ns": "deltaT_MC * PhysicsConstants::tau_S_nonCPT",
+    "ScatDev": "scatteringPlaneDeviation(Knerec[0], Knerec[1], Knerec[2], KnetriKinFit[0], KnetriKinFit[1], KnetriKinFit[2], KnetriKinFit[6] - ipTriKinFit[0], KnetriKinFit[7] - ipTriKinFit[1], KnetriKinFit[8] - ipTriKinFit[2])",
+    "distEllipse": "getCorrelatedEllipseDist(Knerec_mass_centered, Knerec_six_mass_centered, -92.9524, 7.1644, 33.7633, 42.0163, 0.556)",
+    "rhoNeutral": "sqrt(pow(Knerec[6] - ip[0], 2) + pow(Knerec[7] - ip[1], 2))",
+    "zNeutral": "Knerec[8] - ip[2]",
+    "RNeutral": "sqrt(pow(Knerec[6] - ip[0], 2) + pow(Knerec[7] - ip[1], 2) + pow(Knerec[8] - ip[2], 2))",
+    "rhoCharged": "sqrt(pow(Kchboost[6] - ip[0], 2) + pow(Kchboost[7] - ip[1], 2))",
+    "zCharged": "Kchboost[8] - ip[2]",
+    "RCharged": "sqrt(pow(Kchboost[6] - ip[0], 2) + pow(Kchboost[7] - ip[1], 2) + pow(Kchboost[8] - ip[2], 2))"
   }

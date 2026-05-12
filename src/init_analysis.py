@@ -1,5 +1,6 @@
 # Disable ROOT logon file loading — MUST be before import ROOT
 import ROOT
+from lib.utils.lifetime_fitter import KaonLifetimeFitter
 ROOT.PyConfig.DisableRootLogon = True
 ROOT.gROOT.SetBatch(True)
 
@@ -109,6 +110,18 @@ double scatteringPlaneDeviation(double px_in, double py_in, double pz_in,
 }
 """)
 
+# Definiujemy kod C++ jako string
+cpp_code = """
+double getCorrelatedEllipseDist(double u, double v, double u0, double v0, double su, double sv, double rho) {
+    double du = u - u0;
+    double dv = v - v0;
+    double inv_rho2 = 1.0 / (1.0 - rho * rho);
+    double dist2 = inv_rho2 * (std::pow(du/su, 2) + std::pow(dv/sv, 2) - 2.0 * rho * du * dv / (su * sv));
+    return std::sqrt(std::max(0.0, dist2));
+}
+"""
+ROOT.gInterpreter.Declare(cpp_code)
+
 columns_config = os.path.join(os.path.dirname(__file__), "..", "config", "columns.json")
 rdf = ColumnDefiner(rdf).from_json(columns_config).apply()
 
@@ -146,21 +159,21 @@ def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
             f.write(f"Global filter:\n{global_filter}\n")
 
     scale_map = {
-      "Signal": 1.0849,
-      "Omega": 1.234,
-      "Regeneration": [0.498, 3.56, 3.66, 0.571],
-      "3pi0": 0.891,
-      "Semileptonic": 0.0,
-      "Other": 0.0
+      "Signal": 1.0,
+      "Omega": 1.0,
+      "Regeneration": [1.0, 1.0, 1.0, 1.0],
+      "3pi0": 1.0,
+      "Semileptonic": 1.0,
+      "Other": 1.0
     }
 
     # scale_map = {
-    #   "Signal": 1.0,
-    #   "Omega": 1.0,
-    #   "Regeneration": [1.0, 1.0, 1.0, 1.0],
-    #   "3pi0": 1.0,
-    #   "Semileptonic": 1.0,
-    #   "Other": 1.0
+    #   "Signal": 1.08178,
+    #   "Omega": 1.15841,
+    #   "Regeneration": [0.494376, 3.54945, 3.82781, 0.594028],
+    #   "3pi0": 0.685898,
+    #   "Semileptonic": 0.0,
+    #   "Other": 0.0
     # }
 
     # Efficiency
@@ -257,8 +270,9 @@ def run_analysis(rdf, global_filter, img_dir, output_suffix=""):
             mch.build()
             cache.save(name, mch, global_filter=global_filter, hist_model=hm)
 
-        archive.add(name, mch, hist_model=hm)
-        mch.draw(save_as=os.path.join(suffix_dir, f"{name}.svg"), scale_mc=False)
+            # Wspólne dla wszystkich (cached i computed)
+            archive.add(name, mch, hist_model=hm)
+            mch.draw(save_as=os.path.join(suffix_dir, f"{name}.svg"), scale_mc=True)
 
     archive.save()
 
@@ -313,11 +327,58 @@ elif mode == 2:
 elif mode == 3:
     # Efficiency vs Purity optimization plot for a single cut
     print("=== MODE 3: Efficiency vs Purity Optimization Plot ===\n")
-    cut_opt = CutOptimization(rdf)
+    cut_opt = CutOptimization(rdf, CUTS_PATH)
     global_filter = eval_cuts.get_all_cuts("optimal")
-    optimized_cut = SingleCut(variable="minv4gam", operator="abs_lt", value=0.0, optimization_range=[0.0, 100.0], bias = ROOT.PhysicsConstants.mK0)
+    optimized_cut = SingleCut(variable="distEllipse", operator=">", value=0.0, optimization_range=[0.0, 5.0])
     
     cut_opt.efficiency_purity_plot(prefix_cut=global_filter, optimized_cut=optimized_cut, num_points=10, graph_path=img_dir)
+
+elif mode == 4:
+    # Ellipse fitting for u vs v
+    print("=== MODE 4: Ellipse Fitting for u vs v ===\n")
+    from lib.utils.optimize_cuts_utils import EllipseFitter
+
+    rdf_three = rdf.Filter("mctruth == 4 && mcflag == 1 && Knerec_six_mass_centered > -450") # Wybieramy tylko sygnał (mctruth == 4) i poprawnie zrekonstruowane (mcflag == 1)
+
+    fitter = EllipseFitter(rdf_three, "Knerec_mass_centered", "Knerec_six_mass_centered")
+    params = fitter.fit(n_iterations=6, sigma_cut=3.0)
+    print("Fitted ellipse parameters:")
+    for key, value in params.items():
+        print(f"  {key}: {value}")
+    
+    fitter.draw_fit(n_sigma=1.0, output_path="check_1sigma.png")
+    fitter.draw_fit(n_sigma=2.5, output_path="check_2sigma.png")
+
+    json_snippet = fitter.generate_json_snippet()
+    print("\nGenerated JSON snippet for cut definition:")
+    print(json_snippet)
+
+elif mode == 5:
+
+  print("[Analysis] Starting Lifetime Fit...")
+
+  # 1. Inicjalizacja fittera na przefiltrowanym RDF (np. tylko sygnał)
+  # Możesz użyć tego samego global_filter, co w histogramach
+  rdf_signal = rdf.Filter("mctruth == 1 || mctruth == 0 || mctruth == -1") 
+  fitter = KaonLifetimeFitter(rdf_signal, time_var="deltaT_MC_ns")
+
+  # 2. Wykonanie dopasowania
+  # t_min ustawiamy tak, by ominąć rozdzielczość wierzchołka (np. 0.1 - 0.2 ns)
+  results = fitter.fit(t_range=300.0 * 0.0895, n_bins=601, exclude_width=0.2)
+
+  if results:
+      print(f"--- FIT RESULTS ---")
+      print(f"tau_S: {results.Parameter(1):.5f} +/- {results.ParError(1):.5f} Ts")
+      print(f"tau_L: {results.Parameter(3):.5f} +/- {results.ParError(3):.5f} Ts")
+      print(f"Ratio: {results.Parameter(2):.5f} +/- {results.ParError(2):.5f}")
+      print(f"Chi2/ndf: {results.Chi2()/results.Ndf():.2f}")
+      
+      # 3. Zapisanie wykresu
+      fitter.draw(os.path.join(img_dir, "kaon_lifetime_fit.svg"))
+      
+      # 4. Opcjonalnie: Zapisz wyniki do pliku tekstowego/JSONa
+      with open(os.path.join(img_dir, "lifetime_results.txt"), "w") as f:
+          f.write(str(results))
 
 else:
     print(f"Unknown mode: {mode}. Use 1 (sequential), 2 (combined), or 3 (optimization).")

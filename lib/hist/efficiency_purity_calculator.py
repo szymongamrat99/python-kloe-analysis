@@ -107,7 +107,7 @@ class EfficiencyPurityCalculator:
     # ---
 
     # Count near 0
-    selection = f"{selection} && abs(deltaT) < 15" if selection else "(abs(deltaT) < 15)"
+    selection = f"{selection} && abs(deltaT) < 20" if selection else "(abs(deltaT) < 20)"
 
     comb_total_selection = selection + " && " + self.combined_truth_condition if selection else self.truth_condition
 
@@ -116,7 +116,7 @@ class EfficiencyPurityCalculator:
     bkg_selection = selection + " && " + "!" + self.truth_condition_before_cut if selection else "!" + self.truth_condition_before_cut
 
     # Count total true events
-    total_true_near_zero = self.rdfMC.Filter("abs(deltaT) < 15 && " + self.combined_truth_condition).Count().GetValue()
+    total_true_near_zero = self.rdfMC.Filter("abs(deltaT) < 20 && " + self.combined_truth_condition).Count().GetValue()
 
     # Count selected events
     selected_true_near_zero = self.rdfMC.Filter(comb_total_selection).Count().GetValue()

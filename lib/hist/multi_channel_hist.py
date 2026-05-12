@@ -140,7 +140,7 @@ class MultiChannelHist:
             print(f"Fitted resolution: mean={mean:.3f} ± {mean_err:.3f}, sigma_core={sigma_core:.3f} ± {sigma_core_err:.3f}, sigma_tail={sigma_tail:.3f} ± {sigma_tail_err:.3f}, chi2/ndf={chi2}/{ndf}")
 
             # 5. Bezpieczne zwracanie wyników
-        if fit_result and fit_result.IsValid():
+        if fit_result.IsValid():
           return (
             fit_result.Parameter(1), # sigma_core
             fit_result.ParError(1),  # sigma_core_err
