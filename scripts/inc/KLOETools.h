@@ -499,6 +499,63 @@ namespace KloeTools
     std::cout << "[+] Macierz poprawek 2D zapisana do: " << filename << std::endl;
     return h_ratio_2D;
   }
+
+  double get_weight_2D(TH2* h_corr_matrix, double r_val, double dt_val)
+  {
+    // 1. Zabezpieczenie: Sprawdzamy, czy macierz w ogóle istnieje w pamięci
+    if (!h_corr_matrix) {
+      // Jeśli macierzy nie ma, zwracamy 1.0 (neutralna waga - nie zmienia wyniku)
+      return 1.0; 
+    }
+
+    // 2. ROOT automatycznie znajduje globalny numer binu (X, Y) dla podanych wartości
+    int bin2D = h_corr_matrix->FindBin(r_val, dt_val);
+
+    // 3. Pobieramy czynnik poprawkowy (wagę) z tego binu
+    double weight = h_corr_matrix->GetBinContent(bin2D);
+
+    // 4. Fizyczne filtry bezpieczeństwa dla krawędzi macierzy (Low Statistics)
+    // Jeśli waga jest zerowa, ujemna lub absurdalnie wysoka, zwracamy 1.0
+    if (weight <= 0.0 || weight > 5.0) {
+      return 1.0;
+    }
+
+    // 5. Zwracamy poprawnie wyznaczoną wagę
+    return weight;
+  }
+
+  void initialize_matrices_from_file(TString input_filename, std::unordered_map<std::string, TH2 *> &h_corr_matrices)
+  {
+    // 2. Otwieramy plik ROOT w trybie tylko do odczytu ("READ")
+    TFile* f_input = TFile::Open(input_filename, "READ");
+    
+    if (!f_input || f_input->IsZombie()) {
+      std::cout << "[-] Błąd: Nie można otworzyć pliku " << input_filename << std::endl;
+      return;
+    }
+    std::cout << "[+] Pomyślnie otwarto plik z wagami: " << input_filename << std::endl;
+
+    // 3. Wczytujemy macierze za pomocą metody Get() 
+    // WAŻNE: Musisz podać dokładnie taką samą nazwę (string), z jaką macierz została zapisana!
+    h_corr_matrices["spherical"] = (TH2D*)f_input->Get("h_matrix_correction_spherical_charged");
+    h_corr_matrices["cylindrical"] = (TH2D*)f_input->Get("h_matrix_correction_cylindrical_charged");
+
+    // 4. KRYTYCZNY KROK W ROOT: Odwiązanie histogramów od pliku (SetDirectory(0))
+    // Jeśli tego nie zrobisz, w momencie zamknięcia pliku (f_input->Close()), 
+    // Twoje macierze zostaną automatycznie usunięte z pamięci RAM!
+    for (auto const& [key, matrix] : h_corr_matrices) {
+      if (matrix) {
+        matrix->SetDirectory(0); 
+        std::cout << "[+] Załadowano macierz: " << key << " (Biny: " << matrix->GetNbinsX() << "x" << matrix->GetNbinsY() << ")" << std::endl;
+      } else {
+        std::cout << "[-] Ostrzeżenie: Nie znaleziono macierzy dla klucza: " << key << " w pliku ROOT!" << std::endl;
+      }
+    }
+
+    // 5. Bezpiecznie zamykamy plik, macierze zostają w RAM-ie dzięki SetDirectory(0)
+    f_input->Close();
+    delete f_input;
+  }
 }
 
 #endif

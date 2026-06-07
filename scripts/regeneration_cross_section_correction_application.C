@@ -73,82 +73,17 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
   TTreeReaderValue<Int_t> mcflag(reader, "mcflag");
 
   // Definition of histograms
-  std::unordered_map<std::string, TH1 *> h_rho_charged;
-  std::unordered_map<std::string, TH1 *> h_rho_neutral;
-
-  std::unordered_map<std::string, TH1 *> h_R_charged;
-  std::unordered_map<std::string, TH1 *> h_R_neutral;
-
-  std::unordered_map<std::string, TH1 *> h_rho_charged_no_corr;
-  std::unordered_map<std::string, TH1 *> h_rho_neutral_no_corr;
-
-  std::unordered_map<std::string, TH1 *> h_R_charged_no_corr;
-  std::unordered_map<std::string, TH1 *> h_R_neutral_no_corr;
-
-  std::unordered_map<std::string, TH2 *> h_rho_charged_vs_R;
-  std::unordered_map<std::string, TH2 *> h_rho_neutral_vs_R;
-
-  std::unordered_map<std::string, TH2 *> h_xy_charged_DC;
-  std::unordered_map<std::string, TH2 *> h_xy_charged_BP;
-
-  std::unordered_map<std::string, TProfile *> h_prof_polar_DC;
-  std::unordered_map<std::string, TProfile *> h_prof_polar_BP;
-
-  std::unordered_map<std::string, TH2 *> h_polar_DC;
-  std::unordered_map<std::string, TH2 *> h_polar_BP;
-
-  std::unordered_map<std::string, std::array<TH1 *, 3>> h_neu_coordinates;
-  std::unordered_map<std::string, std::array<TH1 *, 3>> h_ch_coordinates;
-
-  std::unordered_map<std::string, TH2 *> h_corr_rho_dt_charged;
-  std::unordered_map<std::string, TH2 *> h_corr_rho_dt_neutral;
-  std::unordered_map<std::string, TH2 *> h_corr_R_dt_charged;
-  std::unordered_map<std::string, TH2 *> h_corr_R_dt_neutral;
+  std::unordered_map<std::string, TH1 *> h_dt;
 
   for (const auto &chann : KLOE::channName)
   {
     std::string channel_name = (std::string)chann.second;
 
-    h_rho_charged[channel_name] = new TH1F(("h_rho_charged_" + channel_name).c_str(), ("Rho Charged " + channel_name + ";#rho_{charged} [cm];Entries").c_str(), 251, 0, 50);
-    h_rho_neutral[channel_name] = new TH1F(("h_rho_neutral_" + channel_name).c_str(), ("Rho Neutral " + channel_name + ";#rho_{neutral} [cm];Entries").c_str(), 251, 0, 50);
-
-    h_R_charged[channel_name] = new TH1F(("h_R_charged_" + channel_name).c_str(), ("R Charged " + channel_name + ";R_{charged} [cm];Entries").c_str(), 251, 0, 50);
-    h_R_neutral[channel_name] = new TH1F(("h_R_neutral_" + channel_name).c_str(), ("R Neutral " + channel_name + ";R_{neutral} [cm];Entries").c_str(), 251, 0, 50);
-
-    h_rho_charged_no_corr[channel_name] = new TH1F(("h_rho_charged_no_corr_" + channel_name).c_str(), ("Rho Charged no correction " + channel_name + ";#rho_{charged} [cm];Entries").c_str(), 200, 0, 50);
-    h_rho_neutral_no_corr[channel_name] = new TH1F(("h_rho_neutral_no_corr_" + channel_name).c_str(), ("Rho Neutral no correction" + channel_name + ";#rho_{neutral} [cm];Entries").c_str(), 200, 0, 50);
-
-    h_R_charged_no_corr[channel_name] = new TH1F(("h_R_charged_no_corr_" + channel_name).c_str(), ("R Charged no correction" + channel_name + ";R_{charged} [cm];Entries").c_str(), 200, 0, 50);
-    h_R_neutral_no_corr[channel_name] = new TH1F(("h_R_neutral_no_corr_" + channel_name).c_str(), ("R Neutral no correction" + channel_name + ";R_{neutral} [cm];Entries").c_str(), 200, 0, 50);
-
-    h_rho_charged_vs_R[channel_name] = new TH2F(("h_rho_charged_vs_R_" + channel_name).c_str(), ("Rho Charged vs R " + channel_name + ";R_{charged};#rho_{charged}").c_str(), 251, 0, 50, 251, 0, 50);
-    h_rho_neutral_vs_R[channel_name] = new TH2F(("h_rho_neutral_vs_R_" + channel_name).c_str(), ("Rho Neutral vs R " + channel_name + ";R_{neutral};#rho_{neutral}").c_str(), 251, 0, 50, 251, 0, 50);
-
-    for (int i = 0; i < 3; ++i)
-    {
-      h_neu_coordinates[channel_name][i] = new TH1F(("h_neu_" + channel_name + "_" + std::to_string(i)).c_str(), ("Neutral Coordinate " + channel_name + " - " + std::to_string(i) + ";Coordinate;Entries").c_str(), 251, -50, 50);
-      h_ch_coordinates[channel_name][i] = new TH1F(("h_ch_" + channel_name + "_" + std::to_string(i)).c_str(), ("Charged Coordinate " + channel_name + " - " + std::to_string(i) + ";Coordinate;Entries").c_str(), 251, -50, 50);
-    }
-
-    h_xy_charged_DC[channel_name] = new TH2F(("h_xy_charged_DC_" + channel_name).c_str(), ("XY Charged " + channel_name + ";X_{charged} [cm];Y_{charged} [cm]").c_str(), 251, -50, 50, 251, -50, 50);
-    h_xy_charged_BP[channel_name] = new TH2F(("h_xy_charged_BP_" + channel_name).c_str(), ("XY Charged " + channel_name + " - BP;X_{charged} [cm];Y_{charged} [cm]").c_str(), 251, -50, 50, 251, -50, 50);
-
-    h_prof_polar_DC[channel_name] = new TProfile(("h_prof_polar_DC_" + channel_name).c_str(), ("Polar Profile DC " + channel_name + ";#phi [rad];#rho [cm]").c_str(), 70, -TMath::Pi(), TMath::Pi());
-    h_prof_polar_BP[channel_name] = new TProfile(("h_prof_polar_BP_" + channel_name).c_str(), ("Polar Profile BP " + channel_name + ";#phi [rad];#rho [cm]").c_str(), 70, -TMath::Pi(), TMath::Pi());
-
-    h_prof_polar_DC[channel_name]->SetErrorOption("G");
-    h_prof_polar_BP[channel_name]->SetErrorOption("G");
-
-    h_polar_DC[channel_name] = new TH2F(("h_polar_DC_" + channel_name).c_str(), ("Polar DC " + channel_name + ";#phi [rad];#rho [cm]").c_str(), 30, -TMath::Pi(), TMath::Pi(), 100, 20, 30);
-    h_polar_BP[channel_name] = new TH2F(("h_polar_BP_" + channel_name).c_str(), ("Polar BP " + channel_name + ";#phi [rad];#rho [cm]").c_str(), 30, -TMath::Pi(), TMath::Pi(), 100, 3, 6);
-
-    double t_min = -300, t_max = 300, t_res = 1.5;
+    double t_min = -300, t_max = 300, t_res = 1.5, r_min = 0., r_max = 50.;
     int t_bins = floor((t_max - t_min) / t_res);
+    int r_bins = 200;
 
-    h_corr_rho_dt_charged[channel_name] = new TH2F(("h_corr_rho_dt_charged_" + channel_name).c_str(), ("Corrected Rho Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
-    h_corr_rho_dt_neutral[channel_name] = new TH2F(("h_corr_rho_dt_neutral_" + channel_name).c_str(), ("Corrected Rho Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
-    h_corr_R_dt_charged[channel_name] = new TH2F(("h_corr_R_dt_charged_" + channel_name).c_str(), ("Corrected R Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
-    h_corr_R_dt_neutral[channel_name] = new TH2F(("h_corr_R_dt_neutral_" + channel_name).c_str(), ("Corrected R Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_dt[channel_name] = new TH1F(("h_dt_" + channel_name).c_str(), ("Time difference " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];Entries").c_str(), t_bins, t_min, t_max, r_bins, r_min, r_max);
   }
   //
 
@@ -171,14 +106,14 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
   };
   // ---
 
-  TVector3 kch_position(0, 0, 0),
-      kne_position(0, 0, 0),
-      displacement_vector_data(0,0,0),//(0.002, -1.010, 0.),
-      displacement_vector_mc(0,0,0);//(-0.083, -1.028, 0.);
-
   std::unordered_map<std::string, Int_t> entries_count; // Map to count entries for each channel
 
   Long64_t data_entries = 0, mc_entries = 0;
+
+  std::unordered_map<std::string, TH2 *> &h_corr_matrices
+  // Open correction file
+  initialize_matrices_from_file("results/regeneration_cross_section_corr_factors.root", h_corr_matrices);
+
 
   while (reader.Next())
   {
@@ -215,172 +150,30 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
     if (current_channel == "Signal")
           signal_weight = interf.interf_function(t_ch - t_ne) / interf.double_exponential(t_ch - t_ne);
 
-    if (t_ne < 7.0)
+    kch_position.SetXYZ(Kchrec[6], Kchrec[7], Kchrec[8]);
+    ev.R_charged = kch_position.Mag();
+    ev.rho_charged = kch_position.Perp();
+
+    kne_position.SetXYZ(Knerec[6], Knerec[7], Knerec[8]);
+    ev.R_neutral = kne_position.Mag();
+    ev.rho_neutral = kne_position.Perp();
+
+    bool CylBPCharged = (ev.rho_charged > 3.60227 && ev.rho_charged < 5.4366),
+         CylDCCharged = (ev.rho_charged > 23.4879 && ev.rho_charged < 26.8633),
+         SphBPCharged = (ev.R_charged > 7.57729 && ev.R_charged < 12.3962),
+         CylBPNeutral = (ev.rho_neutral > 3.34375 && ev.rho_neutral < 5.41215),
+         CylDCNeutral = (ev.rho_neutral > 23.3831 && ev.rho_neutral < 26.8272),
+         SphBPNeutral = (ev.R_neutral > 7.91582 && ev.R_neutral < 12.334);
+
+    
+    if (current_channel == "Regeneration")
     {
-      kch_position.SetXYZ(Kchrec[6], Kchrec[7], Kchrec[8]);
-      ev.R_charged = kch_position.Mag();
-      ev.rho_charged = kch_position.Perp();
-
-      double rho = 0;
-
-      if (current_channel == "Data")
-      {
-        rho = std::sqrt(pow(Kchrec[6] - displacement_vector_data.X(), 2) + pow(Kchrec[7] - displacement_vector_data.Y(), 2));
-      }
-      else
-      {
-        rho = std::sqrt(pow(Kchrec[6] - displacement_vector_mc.X(), 2) + pow(Kchrec[7] - displacement_vector_mc.Y(), 2));
-      }
-
-      if (rho < 26.8633 && rho > 23.4879)
-      {
-        if (is_mc)
-          kch_position -= displacement_vector_mc;
-        else
-          kch_position -= displacement_vector_data;
-
-        ev.R_charged = kch_position.Mag();
-        ev.rho_charged = kch_position.Perp();
-
-        // Obliczenie kąta polarnego w płaszczyźnie XY detektora
-        double phi_charged = std::atan2(Kchrec[7], Kchrec[6]); // atan2(y, x) dla poprawnego zakresu kąta
-        double r_geom_xy = std::sqrt(Kchrec[6] * Kchrec[6] + Kchrec[7] * Kchrec[7]);
-
-        h_xy_charged_DC[current_channel]->Fill(kch_position.X(), kch_position.Y());
-        h_prof_polar_DC[current_channel]->Fill(phi_charged, r_geom_xy); // Napełnianie profilu dla DC
-        h_polar_DC[current_channel]->Fill(phi_charged, r_geom_xy);      // Napełnianie histogramu 2D dla DC (do porównania)
-
-        if (current_channel != "Data")
-        {
-          h_xy_charged_DC["MC sum"]->Fill(kch_position.X(), kch_position.Y(), signal_weight);
-          h_prof_polar_DC["MC sum"]->Fill(phi_charged, r_geom_xy, signal_weight);
-          h_polar_DC["MC sum"]->Fill(phi_charged, r_geom_xy, signal_weight );
-        }
-
-        h_rho_charged[current_channel]->Fill(ev.rho_charged);
-        h_R_charged[current_channel]->Fill(ev.R_charged);
-        h_rho_charged_vs_R[current_channel]->Fill(ev.R_charged, ev.rho_charged);
-      }
-      else
-      {
-        ev.R_charged = kch_position.Mag();
-        ev.rho_charged = kch_position.Perp();
-
-        h_rho_charged[current_channel]->Fill(ev.rho_charged);
-        h_R_charged[current_channel]->Fill(ev.R_charged);
-        h_rho_charged_vs_R[current_channel]->Fill(ev.R_charged, ev.rho_charged);
-      }
-
-      kch_position.SetXYZ(Kchrec[6], Kchrec[7], Kchrec[8]);
-      ev.R_charged = kch_position.Mag();
-      ev.rho_charged = kch_position.Perp();
-
-      if (current_channel != "Data" && current_channel != "Signal")
-      {
-        h_rho_charged_no_corr["MC sum"]->Fill(ev.rho_charged);
-        h_R_charged_no_corr["MC sum"]->Fill(ev.R_charged);
-
-        h_corr_rho_dt_charged["MC sum"]->Fill(t_ch - t_ne, ev.rho_charged);
-        h_corr_R_dt_charged["MC sum"]->Fill(t_ch - t_ne, ev.R_charged);
-
-        h_rho_charged_no_corr[current_channel]->Fill(ev.rho_charged);
-        h_R_charged_no_corr[current_channel]->Fill(ev.R_charged);
-
-        h_corr_rho_dt_charged[current_channel]->Fill(t_ch - t_ne, ev.rho_charged);
-        h_corr_R_dt_charged[current_channel]->Fill(t_ch - t_ne, ev.R_charged);
-      }
-      else if (current_channel == "Signal")
-      {
-        h_rho_charged_no_corr["Signal"]->Fill(ev.rho_charged, signal_weight);
-        h_R_charged_no_corr["Signal"]->Fill(ev.R_charged, signal_weight);
-
-        h_corr_rho_dt_charged["Signal"]->Fill(t_ch - t_ne, ev.rho_charged, signal_weight);
-        h_corr_R_dt_charged["Signal"]->Fill(t_ch - t_ne, ev.R_charged, signal_weight);
-      }
-      else if (current_channel == "Data")
-      {
-        h_rho_charged_no_corr[current_channel]->Fill(ev.rho_charged);
-        h_R_charged_no_corr[current_channel]->Fill(ev.R_charged);
-
-        h_corr_rho_dt_charged[current_channel]->Fill(t_ch - t_ne, ev.rho_charged);
-        h_corr_R_dt_charged[current_channel]->Fill(t_ch - t_ne, ev.R_charged);
-      }
+      if (CylBPCharged || CylDCCharged)
+        
     }
-
-    if (t_ch < 7.0)
+    else
     {
-      kne_position.SetXYZ(Knerec[6], Knerec[7], Knerec[8]);
-      ev.R_neutral = kne_position.Mag();
-      ev.rho_neutral = kne_position.Perp();
-
-      double rho = 0;
-
-      if (current_channel == "Data")
-      {
-        rho = std::sqrt(pow(Knerec[6] - displacement_vector_data.X(), 2) + pow(Knerec[7] - displacement_vector_data.Y(), 2));
-      }
-      else
-      {
-        rho = std::sqrt(pow(Knerec[6] - displacement_vector_mc.X(), 2) + pow(Knerec[7] - displacement_vector_mc.Y(), 2));
-      }
-
-      if (rho < 27 && rho > 23.0)
-      {
-
-        if (is_mc)
-          kne_position -= displacement_vector_mc;
-        else
-          kne_position -= displacement_vector_data;
-
-        ev.R_neutral = kne_position.Mag();
-        ev.rho_neutral = kne_position.Perp();
-
-        // Wypełnianie po nazwie kanału!
-        h_rho_neutral[current_channel]->Fill(ev.rho_neutral);
-        h_R_neutral[current_channel]->Fill(ev.R_neutral);
-        h_rho_neutral_vs_R[current_channel]->Fill(ev.R_neutral, ev.rho_neutral);
-      }
-      else
-      {
-        ev.R_neutral = kne_position.Mag();
-        ev.rho_neutral = kne_position.Perp();
-        // Wypełnianie po nazwie kanału!
-        h_rho_neutral[current_channel]->Fill(ev.rho_neutral);
-        h_R_neutral[current_channel]->Fill(ev.R_neutral);
-        h_rho_neutral_vs_R[current_channel]->Fill(ev.R_neutral, ev.rho_neutral);
-      }
-
-      kne_position.SetXYZ(Knerec[6], Knerec[7], Knerec[8]);
-      ev.R_neutral = kne_position.Mag();
-      ev.rho_neutral = kne_position.Perp();
-
-      if (current_channel != "Data" && current_channel != "Signal")
-      {
-        h_rho_neutral_no_corr["MC sum"]->Fill(ev.rho_neutral);
-        h_R_neutral_no_corr["MC sum"]->Fill(ev.R_neutral);
-        h_corr_rho_dt_neutral["MC sum"]->Fill(t_ch - t_ne, ev.rho_neutral);
-        h_corr_R_dt_neutral["MC sum"]->Fill(t_ch - t_ne, ev.R_neutral);
-
-        h_rho_neutral_no_corr[current_channel]->Fill(ev.rho_neutral);
-        h_R_neutral_no_corr[current_channel]->Fill(ev.R_neutral);
-        h_corr_rho_dt_neutral[current_channel]->Fill(t_ch - t_ne, ev.rho_neutral);
-        h_corr_R_dt_neutral[current_channel]->Fill(t_ch - t_ne, ev.R_neutral);
-      }
-      else if (current_channel == "Signal")
-      {
-        h_rho_neutral_no_corr["Signal"]->Fill(ev.rho_neutral, signal_weight);
-        h_R_neutral_no_corr["Signal"]->Fill(ev.R_neutral, signal_weight);
-
-        h_corr_rho_dt_neutral["Signal"]->Fill(t_ch - t_ne, ev.rho_neutral, signal_weight);
-        h_corr_R_dt_neutral["Signal"]->Fill(t_ch - t_ne, ev.R_neutral, signal_weight);
-      }
-      else if (current_channel == "Data")
-      {
-        h_rho_neutral_no_corr[current_channel]->Fill(ev.rho_neutral);
-        h_R_neutral_no_corr[current_channel]->Fill(ev.R_neutral);
-        h_corr_rho_dt_neutral[current_channel]->Fill(t_ch - t_ne, ev.rho_neutral);
-        h_corr_R_dt_neutral[current_channel]->Fill(t_ch - t_ne, ev.R_neutral);
-      }
+      
     }
 
     // Wypełnianie histogramów współrzędnych (dla analizy jakościowej)
