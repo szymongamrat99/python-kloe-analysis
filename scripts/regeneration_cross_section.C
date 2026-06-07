@@ -590,13 +590,13 @@ void regeneration_cross_section(TString root_file_date)
       double totalErr = ratio * relErrRatio; // Błąd bezwzględny dla ratio
 
       // Zapisujemy granice przedziału, w którym błąd jest bezpieczny
-      if (!foundFirstSafe && relErrRatio <= 0.50)
+      if (!foundFirstSafe && relErrRatio <= 1.0)
       {
         safeXMin = x; // Pierwszy punkt pętli spełniający kryterium < 50%
         foundFirstSafe = true;
       }
 
-      if (relErrRatio <= 0.50)
+      if (relErrRatio <= 1.00)
       {
         safeXMax = x; // Nadpisuje się aż do ostatniego poprawnego punktu
       }
