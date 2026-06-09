@@ -176,8 +176,6 @@ void regeneration_cross_section_correction_application(TString root_file_date)
 
     if (current_channel == "Regeneration")
     {
-      std::cout << n_regions << " " << CylBPCharged << " " << CylDCCharged << " " << SphBPCharged << " " << CylBPNeutral << " " << CylDCNeutral << " " << SphBPNeutral << std::endl;
-
       if (n_regions >= 1)
       {
 

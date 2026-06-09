@@ -148,10 +148,10 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
     double t_min = -300, t_max = 300, t_res = 1.5;
     int t_bins = floor((t_max - t_min) / t_res);
 
-    h_corr_rho_dt_charged[channel_name] = new TH2F(("h_corr_rho_dt_charged_" + channel_name).c_str(), ("Corrected Rho Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{charged} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_rho_dt_neutral[channel_name] = new TH2F(("h_corr_rho_dt_neutral_" + channel_name).c_str(), ("Corrected Rho Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_R_dt_charged[channel_name] = new TH2F(("h_corr_R_dt_charged_" + channel_name).c_str(), ("Corrected R Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{charged} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_R_dt_neutral[channel_name] = new TH2F(("h_corr_R_dt_neutral_" + channel_name).c_str(), ("Corrected R Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
+    h_corr_rho_dt_charged[channel_name] = new TH2F(("h_corr_rho_dt_charged_" + channel_name).c_str(), ("Corrected Rho Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_corr_rho_dt_neutral[channel_name] = new TH2F(("h_corr_rho_dt_neutral_" + channel_name).c_str(), ("Corrected Rho Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 50, 0, 50);
+    h_corr_R_dt_charged[channel_name] = new TH2F(("h_corr_R_dt_charged_" + channel_name).c_str(), ("Corrected R Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_corr_R_dt_neutral[channel_name] = new TH2F(("h_corr_R_dt_neutral_" + channel_name).c_str(), ("Corrected R Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 50, 0, 50);
   }
   //
 
