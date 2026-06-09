@@ -44,7 +44,7 @@ namespace KloeTools
       return;
     }
 
-    TString base_path = "/home/g/gamrat/root_files/" + root_file_date + "/Signal/";
+    TString base_path = "/data/ssd/gamrat/CNAF_Produced_Files/root_files/" + root_file_date + "/Signal/";
     std::array<TString, 3> mc_paths = {
         "ALL_PHYS_SIGNAL_NoSmearing/",
         "ALL_PHYS2_SIGNAL_NoSmearing/",
@@ -397,10 +397,10 @@ namespace KloeTools
     delete h_sub;
   }
 
-  void plot_ratio_and_save(TH1 *h_numerator, TH1 *h_denominator, TString title, TString filename)
+  void plot_ratio_and_save(TH1 *h_numerator, TH1 *h_mc_sum, TH1 *h_regeneration, TString title, TString filename)
   {
     // 1. Sprawdzenie czy histogramy istnieją
-    if (!h_numerator || !h_denominator)
+    if (!h_numerator || !h_mc_sum || !h_regeneration)
     {
       std::cout << "[-] Błąd: Któryś z histogramów nie istnieje!" << std::endl;
       return;
@@ -411,7 +411,9 @@ namespace KloeTools
     h_ratio->SetTitle(title + ";#rho [cm];Dane / MC sum");
 
     // 3. Bezpośrednie dzielenie bin po binie (wraz z poprawnym przeliczeniem błędów)
-    h_ratio->Divide(h_denominator);
+    h_mc_sum->Add(h_regeneration, -1.0); // Dodajemy Regenerację do mianownika, żeby mieć pełną sumę MC
+    h_ratio->Add(h_mc_sum, -1.0); // Odejmujemy sumę MC od licznika, żeby mieć tylko sygnał w liczniku
+    h_ratio->Divide(h_regeneration);
 
     // 4. Stylizacja histogramu ilorazu
     h_ratio->SetMarkerStyle(20); // Pełne kropki
@@ -422,7 +424,7 @@ namespace KloeTools
 
     // Opcjonalnie: zawężamy oś Y wokół jedynki, żeby fluktuacje na krawędziach nie popsuły skali
     h_ratio->SetMinimum(0.0);
-    h_ratio->SetMaximum(3.0);
+    h_ratio->SetMaximum(7.0);
 
     // 5. Rysowanie na Canvasie
     TCanvas *c_ratio = new TCanvas("c_ratio_temp", "Ratio Canvas", 800, 600);
@@ -449,53 +451,58 @@ namespace KloeTools
     std::cout << "[+] Wykres ilorazu zapisany do: " << filename << std::endl;
   }
 
-  TH2 *plot_ratio_2D_and_save(TH2 *h_numerator, TH2 *h_denominator, TString title, TString filename)
+  TH2 *plot_ratio_2D_and_save(TH2 *h_data, TH2 *h_mc_sum, TH2 *h_regeneration, TString title, TString filename)
   {
-    // 1. Sprawdzenie czy histogramy 2D istnieją
-    if (!h_numerator || !h_denominator)
+    // 1. Sprawdzenie czy wszystkie histogramy 2D istnieją
+    if (!h_data || !h_mc_sum || !h_regeneration)
     {
       std::cout << "[-] Błąd: Któryś z histogramów 2D nie istnieje!" << std::endl;
       return nullptr;
     }
 
-    // 2. Tworzenie macierzy ilorazu jako kopii licznika
-    TH2D *h_ratio_2D = (TH2D *)h_numerator->Clone("h_ratio_2D_temp");
+    // 2. Krok 1: h_mc_bkg = h_mc_sum - h_regeneration
+    //    Odejmujemy Regenerację od sumy MC, żeby zostało samo tło (bez sygnału regeneracji)
+    TH2D *h_mc_bkg = (TH2D *)h_mc_sum->Clone("h_mc_bkg_temp");
+    h_mc_bkg->SetDirectory(0);
+    h_mc_bkg->Add(h_regeneration, -1.0);
 
-    // Przejmujemy osie i tytuły z oryginalnych histogramów
-    TString x_title = h_numerator->GetXaxis()->GetTitle();
-    TString y_title = h_numerator->GetYaxis()->GetTitle();
+    // 3. Krok 2: h_data_signal = h_data - h_mc_bkg
+    //    Odejmujemy tło MC od danych, żeby wyizolować sygnał regeneracji w danych
+    TH2D *h_data_signal = (TH2D *)h_data->Clone("h_data_signal_temp");
+    h_data_signal->SetDirectory(0);
+    h_data_signal->Add(h_mc_bkg, -1.0);
+
+    // 4. Krok 3: ratio = h_data_signal / h_regeneration
+    //    Dzielimy oczyszczony sygnał w danych przez MC Regenerację
+    TH2D *h_ratio_2D = (TH2D *)h_data_signal->Clone("h_ratio_2D_temp");
+    h_ratio_2D->SetDirectory(0);
+
+    TString x_title = h_data->GetXaxis()->GetTitle();
+    TString y_title = h_data->GetYaxis()->GetTitle();
     h_ratio_2D->SetTitle(title + ";" + x_title + ";" + y_title);
 
-    // 3. Bezpośrednie dzielenie macierzy bin po binie
-    // Opcja "B" (Bayesowska) dba o poprawne błędy i unika nieskończoności przy zerach w mianowniku
-    h_ratio_2D->Divide(h_numerator, h_denominator, 1.0, 1.0, "B");
+    // Opcja "B" (Bayesowska) dba o poprawne błędy przy zerach w mianowniku
+    h_ratio_2D->Divide(h_data_signal, h_regeneration, 1.0, 1.0, "B");
 
-    // 4. Stylizacja i ustawienie skali kolorów
-    // Zawężamy oś Z (kolory) wokół 1.0, żeby szum na krawędziach rury/komory nie popsuł kontrastu
+    // 5. Stylizacja i ustawienie skali kolorów
     h_ratio_2D->SetMinimum(0.0);
-    h_ratio_2D->SetMaximum(2.5);
-
-    // Wyłączamy rysowanie statystyk (pudełka z Mean/RMS), na mapie 2D są zbędne
+    h_ratio_2D->SetMaximum(7.0);
     h_ratio_2D->SetStats(kFALSE);
 
-    // 5. Rysowanie na Canvasie
+    // 6. Rysowanie na Canvasie
     TCanvas *c_ratio_2D = new TCanvas("c_ratio_2D_temp", "2D Ratio Canvas", 900, 800);
-
-    // Ustawiamy ładne marginesy, żeby legenda (Palette) z prawej strony się nie ucięła
     c_ratio_2D->SetRightMargin(0.15);
     c_ratio_2D->cd();
-    c_ratio_2D->SetLogz(0); // Jeśli rozkład jest bardzo nierównomierny, można rozważyć skalę logarytmiczną dla lepszej widoczności (opcjonalnie)
-
-    // Ustawiamy czytelną paletę kolorów (np. kTemperatureMap lub kRainBow)
-    gStyle->SetPalette(kRainbow);
-
-    // Rysujemy jako kolorową mapę (COLZ)
+    c_ratio_2D->SetLogz(0);
+    gStyle->SetPalette(kRainBow);
     h_ratio_2D->Draw("COLZ");
 
-    // 6. Zapis do pliku i czyszczenie pamięci
+    // 7. Zapis do pliku i czyszczenie pamięci
     c_ratio_2D->SaveAs(filename);
-
     delete c_ratio_2D;
+    delete h_mc_bkg;
+    delete h_data_signal;
+
     std::cout << "[+] Macierz poprawek 2D zapisana do: " << filename << std::endl;
     return h_ratio_2D;
   }
@@ -509,14 +516,14 @@ namespace KloeTools
     }
 
     // 2. ROOT automatycznie znajduje globalny numer binu (X, Y) dla podanych wartości
-    int bin2D = h_corr_matrix->FindBin(r_val, dt_val);
+    int bin2D = h_corr_matrix->FindBin(dt_val, r_val);
 
     // 3. Pobieramy czynnik poprawkowy (wagę) z tego binu
     double weight = h_corr_matrix->GetBinContent(bin2D);
 
     // 4. Fizyczne filtry bezpieczeństwa dla krawędzi macierzy (Low Statistics)
     // Jeśli waga jest zerowa, ujemna lub absurdalnie wysoka, zwracamy 1.0
-    if (weight <= 0.0 || weight > 5.0) {
+    if (weight <= 0.0 || weight > 15.0) {
       return 1.0;
     }
 
@@ -537,13 +544,16 @@ namespace KloeTools
 
     // 3. Wczytujemy macierze za pomocą metody Get() 
     // WAŻNE: Musisz podać dokładnie taką samą nazwę (string), z jaką macierz została zapisana!
-    h_corr_matrices["spherical"] = (TH2D*)f_input->Get("h_matrix_correction_spherical_charged");
-    h_corr_matrices["cylindrical"] = (TH2D*)f_input->Get("h_matrix_correction_cylindrical_charged");
+    h_corr_matrices["spherical"] = (TH2D*)f_input->Get("h_ratio_R_dt");
+    h_corr_matrices["cylindrical"] = (TH2D*)f_input->Get("h_ratio_rho_dt");
 
     // 4. KRYTYCZNY KROK W ROOT: Odwiązanie histogramów od pliku (SetDirectory(0))
     // Jeśli tego nie zrobisz, w momencie zamknięcia pliku (f_input->Close()), 
     // Twoje macierze zostaną automatycznie usunięte z pamięci RAM!
-    for (auto const& [key, matrix] : h_corr_matrices) {
+    for (auto const& pair : h_corr_matrices) {
+      std::string key = pair.first;
+      TH2* matrix = pair.second;
+
       if (matrix) {
         matrix->SetDirectory(0); 
         std::cout << "[+] Załadowano macierz: " << key << " (Biny: " << matrix->GetNbinsX() << "x" << matrix->GetNbinsY() << ")" << std::endl;
@@ -555,6 +565,264 @@ namespace KloeTools
     // 5. Bezpiecznie zamykamy plik, macierze zostają w RAM-ie dzięki SetDirectory(0)
     f_input->Close();
     delete f_input;
+  }
+
+  void subtract_background_and_make_ratio(TH1* h_data_raw, TH1 *h_mc_sum, TH2 *h_data_dt_r, TH2 *h_mc_dt_r, double fit_min, double fit_max, TString output_root_file, TString output_png_filename)
+  {
+    if (!h_data_raw || !h_mc_sum) {
+      std::cout << "[-] Blad: Ktorys z histogramow nie istnieje w subtract_background_and_make_ratio!" << std::endl;
+      return;
+    }
+
+    // 1. Definiujemy funkcję fitu (eksponenta dla tla gazowego)
+    TF1* f_bg = new TF1("f_bg", "expo", fit_min, fit_max);
+    f_bg->SetParameter(1, -0.05); // Przybliżenie startowe (opadające tło)
+    
+    // Uruchamiamy dopasowanie tylko w zadanym zakresie tła ("R" - Range, "Q" - Quiet)
+    h_data_raw->Fit(f_bg, "RQ");
+
+    // 2. Tworzymy histogram dla SAMEGO WYMODELOWANEGO TŁA (w pełnym zakresie osi)
+    TH1D* h_background_model = (TH1D*)h_data_raw->Clone("h_background_1D_model");
+    h_background_model->SetDirectory(0);
+    h_background_model->SetTitle("Wymodelowane tlo z fitu (Eksponenta)");
+    h_background_model->Reset(); // Czyszczenie zawartości, zachowujemy tylko osie
+
+    // 3. Tworzymy kopię Danych, z której odejmiemy tło
+    TH1D* h_data_subtracted = (TH1D*)h_data_raw->Clone("h_data_1D_subtracted");
+    h_data_subtracted->SetDirectory(0);
+    h_data_subtracted->SetTitle("Dane po odjeciu tla");
+
+    // 4. ODEJMOWANIE TŁA: Przechodzimy bin po binie i wypełniamy histogramy pośrednie
+    for (int i = 1; i <= h_data_subtracted->GetNbinsX(); ++i) {
+      double bin_center = h_data_subtracted->GetBinCenter(i);
+      double raw_content = h_data_raw->GetBinContent(i);
+      double raw_error = h_data_raw->GetBinError(i);
+
+      // Wartość wykładnicza tła dla środka tego binu
+      double bg_value = f_bg->Eval(bin_center);
+      h_background_model->SetBinContent(i, bg_value);
+
+      double new_content = raw_content - bg_value;
+      if (new_content < 0) new_content = 0.0; // Bezpiecznik przed ujemną statystyką
+
+      h_data_subtracted->SetBinContent(i, new_content);
+      h_data_subtracted->SetBinError(i, raw_error); // Błąd statystyczny z surowych danych
+    }
+
+    // 5. TWORZENIE RATIO: Dzielimy oczyszczone Dane przez MC sum
+    TH1D* h_ratio = (TH1D*)h_data_subtracted->Clone("h_ratio_subtracted_final");
+    h_ratio->SetDirectory(0);
+    h_ratio->SetTitle("Wagi czystego sygnalu (Dane bez tla / MC sum);#rho [cm];Stosunek");
+    
+    // Opcja "B" dla poprawnych błędów skorelowanych
+    h_ratio->Divide(h_data_subtracted, h_mc_sum, 1.0, 1.0, "B");
+    h_ratio->SetMinimum(0.0);
+    h_ratio->SetMaximum(7.0);
+
+    // 6. ZAPIS DO PLIKU .ROOT (Wszystkie kroki pośrednie lądują tutaj)
+    TFile* f_out = TFile::Open(output_root_file, "RECREATE");
+    if (f_out && !f_out->IsZombie()) {
+      h_data_raw->Write("h_data_1D_raw");                 // 1. Surowe dane wejściowe
+      f_bg->Write("f_background_fit_function");           // 2. Sama funkcja fitu
+      h_background_model->Write("h_background_1D_model"); // 3. Wygenerowane na bazie fitu tło 1D
+      h_data_subtracted->Write("h_data_1D_subtracted");   // 4. Czyste dane po odjęciu tła
+      h_mc_sum->Write("h_mc_1D_sum");                     // 5. Wejściowe MC
+      h_ratio->Write("h_ratio_subtracted_final");         // 6. Gotowe wagi
+      
+      f_out->Close();
+      delete f_out;
+      std::cout << "[+] Zapisano histogramy posrednie do pliku ROOT: " << output_root_file << std::endl;
+    } else {
+      std::cerr << "[-] Blad: Nie udalo sie utworzyc pliku ROOT: " << output_root_file << std::endl;
+    }
+
+    // 7. RYSOWANIE I WERYFIKACJA GRAFICZNA (.png)
+    TCanvas* c_verify = new TCanvas("c_verify_temp", "Weryfikacja fitu i odejmowania tla", 1200, 600);
+    c_verify->Divide(2, 1);
+
+    c_verify->cd(1);
+    h_data_raw->Draw("E");
+    f_bg->SetLineColor(kRed);
+    f_bg->SetLineWidth(2);
+    f_bg->Draw("same"); // Pokazuje czerwoną krzywą tła na surowych danych
+
+    c_verify->cd(2);
+    h_ratio->SetMarkerStyle(20);
+    h_ratio->SetMarkerColor(kBlue);
+    h_ratio->Draw("E1"); // Pokazuje finalne wagi
+
+    // Linia referencyjna Y = 1.0
+    double x_min = h_ratio->GetXaxis()->GetXmin();
+    double x_max = h_ratio->GetXaxis()->GetXmax();
+    TLine* line1 = new TLine(x_min, 1.0, x_max, 1.0);
+    line1->SetLineColor(kGray + 2);
+    line1->SetLineStyle(2);
+    line1->Draw("SAME");
+
+    c_verify->SaveAs(output_png_filename);
+
+    // 8. SPRZĄTANIE PAMIĘCI
+    long old_level = gErrorIgnoreLevel;
+    gErrorIgnoreLevel = kSysError;
+
+    delete line1;
+    delete c_verify;
+    delete f_bg;
+    delete h_background_model;
+    delete h_data_subtracted;
+
+    gErrorIgnoreLevel = old_level;
+    std::cout << "[+] Sukces: Wykres kontrolny zapisany do: " << output_png_filename << std::endl;
+  }
+
+ TH2* subtract_1D_fit_from_2D_matrix_and_ratio(
+      TH2* h_data_raw, TH2* h_mc_sum, TH2* h_fit_reference,
+      double rho_fit_min, double rho_fit_max, 
+      double ratio_x_min, double ratio_x_max,
+      double ratio_y_min, double ratio_y_max,
+      TString output_root_file, TString output_png_filename)
+  {
+    if (!h_data_raw || !h_mc_sum || !h_fit_reference) {
+      std::cout << "[-] Blad: Brak wymaganych histogramow 2D w subtract_1D_fit_from_2D_matrix_and_ratio!" << std::endl;
+      return nullptr;
+    }
+
+    // 1. Rzutujemy wybrany HISTOGRAM REFERENCYJNY na os Y, aby wykonac stabilny fit 1D
+    TH1D* h_ref_rho_1D = h_fit_reference->ProjectionY("h_ref_rho_1D_temp", 1, h_fit_reference->GetNbinsX());
+
+    // 2. Fitujemy tlo eksponenta na rozkladzie 1D
+    TF1* f_bg_1D = new TF1("f_bg_1D", "expo", rho_fit_min, rho_fit_max);
+    f_bg_1D->SetParameter(1, -0.05);
+    f_bg_1D->SetParLimits(1, -5.0, 0.0); 
+    h_ref_rho_1D->Fit(f_bg_1D, "RQ");
+
+    double global_slope = f_bg_1D->GetParameter(1);
+
+    // 3. Przygotowujemy histogramy posrednie w 2D do zapisu
+    TH2D* h_background_2D_model = (TH2D*)h_data_raw->Clone("h_background_2D_model");
+    h_background_2D_model->SetDirectory(0);
+    h_background_2D_model->SetTitle("Wymodelowane tlo 2D (z fitu 1D ref);#Delta t [ns];#rho [cm]");
+    h_background_2D_model->Reset();
+
+    TH2D* h_data_2D_subtracted = (TH2D*)h_data_raw->Clone("h_data_2D_subtracted");
+    h_data_2D_subtracted->SetDirectory(0);
+    h_data_2D_subtracted->SetTitle("Dane 2D po odjeciu tla;#Delta t [ns];#rho [cm]");
+
+    // 4. SKALOWANIE I ODEJMOWANIE TLA W 2D (Pasek po pasku Delta t)
+    for (int bx = 1; bx <= h_data_raw->GetNbinsX(); ++bx) {
+      TH1D* h_slice_rho = h_data_raw->ProjectionY("h_slice_rho_temp", bx, bx);
+      
+      TF1* f_slice_bg = new TF1("f_slice_bg", "expo", rho_fit_min, rho_fit_max);
+      f_slice_bg->FixParameter(1, global_slope);
+      h_slice_rho->Fit(f_slice_bg, "RQ");
+
+      for (int by = 1; by <= h_data_raw->GetNbinsY(); ++by) {
+        double rho_val = h_data_raw->GetYaxis()->GetBinCenter(by);
+        double raw_content = h_data_raw->GetBinContent(bx, by);
+        double raw_error   = h_data_raw->GetBinError(bx, by);
+
+        double bg_val = f_slice_bg->Eval(rho_val);
+        h_background_2D_model->SetBinContent(bx, by, bg_val);
+
+        double new_content = raw_content - bg_val;
+        if (new_content < 0.0) new_content = 0.0; 
+
+        h_data_2D_subtracted->SetBinContent(bx, by, new_content);
+        h_data_2D_subtracted->SetBinError(bx, by, raw_error);
+      }
+
+      delete h_slice_rho;
+      delete f_slice_bg;
+    }
+
+    // 5. TWORZENIE FINALNEJ MACIERZY RATIO 2D (Z bezpiecznikiem dla MC == 0)
+    TH2D* h_ratio_2D = (TH2D*)h_data_2D_subtracted->Clone("h_ratio_rho_dt");
+    h_ratio_2D->SetDirectory(0);
+    h_ratio_2D->SetTitle("Finalna macierz wag 2D (Dane bez tla / MC sum);#Delta t [ns];#rho [cm]");
+    h_ratio_2D->Reset(); // Resetujemy zawartość, napełnimy ją ręcznie bin po binie
+
+    for (int bx = 1; bx <= h_data_2D_subtracted->GetNbinsX(); ++bx) {
+      double x_val = h_data_2D_subtracted->GetXaxis()->GetBinCenter(bx);
+      for (int by = 1; by <= h_data_2D_subtracted->GetNbinsY(); ++by) {
+        double y_val = h_data_2D_subtracted->GetYaxis()->GetBinCenter(by);
+        
+        // Sprawdzamy czy bin mieści się w zdefiniowanym przez Ciebie oknie analizy
+        if (x_val < ratio_x_min || x_val > ratio_x_max || y_val < ratio_y_min || y_val > ratio_y_max) {
+          h_ratio_2D->SetBinContent(bx, by, -1.0);
+          h_ratio_2D->SetBinError(bx, by, 0.0);
+          continue;
+        }
+
+        double data_val = h_data_2D_subtracted->GetBinContent(bx, by);
+        double data_err = h_data_2D_subtracted->GetBinError(bx, by);
+        double mc_val   = h_mc_sum->GetBinContent(bx, by);
+        double mc_err   = h_mc_sum->GetBinError(bx, by);
+
+        // KRYTYCZNY BEZPIECZNIK: Jeśli w MC nie ma zliczeń, ustawiamy wagę na zero
+        if (mc_val <= 0.0) {
+          h_ratio_2D->SetBinContent(bx, by, -1.0);
+          h_ratio_2D->SetBinError(bx, by, 0.0);
+        } 
+        else {
+          // Standardowe dzielenie
+          double ratio = data_val / mc_val;
+          
+          // Klasyczne propagowanie błędów dla niezależnych wartości (zamiennik opcji "B")
+          double ratio_err = 0.0;
+          if (data_val > 0.0) {
+            ratio_err = ratio * std::sqrt(std::pow(data_err/data_val, 2) + std::pow(mc_err/mc_val, 2));
+          }
+
+          h_ratio_2D->SetBinContent(bx, by, ratio);
+          h_ratio_2D->SetBinError(bx, by, ratio_err);
+        }
+      }
+    }
+
+    h_ratio_2D->SetMinimum(0.0);
+    h_ratio_2D->SetMaximum(15.0);
+    h_ratio_2D->SetStats(kFALSE);
+
+    // 6. ZAPIS WSZYSTKICH KROKÓW POŚREDNICH DO PLIKU .ROOT
+    TFile* f_out = TFile::Open(output_root_file, "RECREATE");
+    if (f_out && !f_out->IsZombie()) {
+      h_data_raw->Write("h_data_2D_raw");                     
+      h_fit_reference->Write("h_fit_2D_reference_used");      
+      h_ref_rho_1D->Write("h_data_1D_ref_projection");       
+      f_bg_1D->Write("f_background_1D_fit");                  
+      h_background_2D_model->Write("h_background_2D_model");   
+      h_data_2D_subtracted->Write("h_data_2D_subtracted");   
+      h_mc_sum->Write("h_mc_2D_sum");                         
+      h_ratio_2D->Write("h_ratio_rho_dt");                    
+      
+      f_out->Close();
+      delete f_out;
+      std::cout << "[+] Zapisano pelna historie 2D do pliku: " << output_root_file << std::endl;
+    }
+
+    // 7. SZYBKI ZAPIS GRAFICZNY PANELU 2D (.png)
+    TCanvas* c_view = new TCanvas("c_view_temp", "Kontrola 1D Fit -> 2D Subtraction", 1600, 1200);
+    c_view->Divide(2, 2);
+    gStyle->SetPalette(kRainBow);
+
+    c_view->cd(1); gPad->SetRightMargin(0.15); h_data_raw->Draw("COLZ");
+    c_view->cd(2); gPad->SetRightMargin(0.15); h_background_2D_model->Draw("COLZ");
+    c_view->cd(3); gPad->SetRightMargin(0.15); h_data_2D_subtracted->Draw("COLZ");
+    c_view->cd(4); gPad->SetRightMargin(0.15); h_ratio_2D->Draw("COLZ");
+    
+    c_view->SaveAs(output_png_filename);
+
+    // 8. SPRZĄTANIE RAMu
+    long old_level = gErrorIgnoreLevel;
+    gErrorIgnoreLevel = kSysError;
+    delete c_view;
+    delete f_bg_1D;
+    delete h_ref_rho_1D;
+    delete h_background_2D_model;
+    delete h_data_2D_subtracted;
+    gErrorIgnoreLevel = old_level;
+
+    return h_ratio_2D;
   }
 }
 

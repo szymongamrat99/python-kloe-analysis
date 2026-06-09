@@ -30,7 +30,7 @@
 #include "interference.h"
 #include "inc/KLOETools.h"
 
-void regeneration_cross_section_after_DC_displacement(TString root_file_date)
+void regeneration_cross_section_bkg_fit(TString root_file_date)
 {
   gROOT->SetBatch(kTRUE);
   gErrorIgnoreLevel = kSysError;
@@ -148,10 +148,10 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
     double t_min = -300, t_max = 300, t_res = 1.5;
     int t_bins = floor((t_max - t_min) / t_res);
 
-    h_corr_rho_dt_charged[channel_name] = new TH2F(("h_corr_rho_dt_charged_" + channel_name).c_str(), ("Corrected Rho Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{charged} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_rho_dt_neutral[channel_name] = new TH2F(("h_corr_rho_dt_neutral_" + channel_name).c_str(), ("Corrected Rho Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_R_dt_charged[channel_name] = new TH2F(("h_corr_R_dt_charged_" + channel_name).c_str(), ("Corrected R Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{charged} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
-    h_corr_R_dt_neutral[channel_name] = new TH2F(("h_corr_R_dt_neutral_" + channel_name).c_str(), ("Corrected R Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 100, 0, 50);
+    h_corr_rho_dt_charged[channel_name] = new TH2F(("h_corr_rho_dt_charged_" + channel_name).c_str(), ("Corrected Rho Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_corr_rho_dt_neutral[channel_name] = new TH2F(("h_corr_rho_dt_neutral_" + channel_name).c_str(), ("Corrected Rho Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];#rho_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_corr_R_dt_charged[channel_name] = new TH2F(("h_corr_R_dt_charged_" + channel_name).c_str(), ("Corrected R Charged vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{charged} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
+    h_corr_R_dt_neutral[channel_name] = new TH2F(("h_corr_R_dt_neutral_" + channel_name).c_str(), ("Corrected R Neutral vs dt " + channel_name + ";t_{ch} - t_{ne} [#tau_{S}];R_{neutral} [cm]").c_str(), t_bins, t_min, t_max, 200, 0, 50);
   }
   //
 
@@ -208,6 +208,7 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
       continue;
 
     EventKinematics ev;
+    
 
     // ---
 
@@ -219,9 +220,9 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
     double signal_weight = 1.0;
 
     if (current_channel == "Signal")
-          signal_weight = 1.0; //interf.interf_function(t_ch_mc - t_ne_mc) / interf.double_exponential(t_ch_mc - t_ne_mc);
+          signal_weight = interf.interf_function(t_ch_mc - t_ne_mc) / interf.double_exponential(t_ch_mc - t_ne_mc);
 
-    if (1)//t_ne < 7.0)
+    if (t_ne < 7.0)
     {
       kch_position.SetXYZ(Kchrec[6], Kchrec[7], Kchrec[8]);
       ev.R_charged = kch_position.Mag();
@@ -238,7 +239,7 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
         rho = std::sqrt(pow(Kchrec[6] - displacement_vector_mc.X(), 2) + pow(Kchrec[7] - displacement_vector_mc.Y(), 2));
       }
 
-      if (rho < 26.8633 && rho > 22.4879)
+      if (rho < 26.8633 && rho > 23.4879)
       {
         if (is_mc)
           kch_position -= displacement_vector_mc;
@@ -313,7 +314,7 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
       }
     }
 
-    if (1)//t_ch < 7.0)
+    if (t_ch < 7.0)
     {
       kne_position.SetXYZ(Knerec[6], Knerec[7], Knerec[8]);
       ev.R_neutral = kne_position.Mag();
@@ -425,34 +426,12 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
   h_corr_R_dt_charged["MC sum"]->Add(h_corr_R_dt_charged["Signal"]);
   h_corr_R_dt_neutral["MC sum"]->Add(h_corr_R_dt_neutral["Signal"]);
 
+  // Fit sideband data
+  KloeTools::subtract_1D_fit_from_2D_matrix_and_ratio(h_corr_rho_dt_charged["Data"], h_corr_rho_dt_charged["Regeneration"], h_corr_rho_dt_charged["Data"], 15.0, 50.0, -300, 300, 20, 28, "steps_rho_charged.root", "check_rho_charged.png");
+  KloeTools::subtract_1D_fit_from_2D_matrix_and_ratio(h_corr_rho_dt_neutral["Data"], h_corr_rho_dt_neutral["Regeneration"], h_corr_rho_dt_neutral["Data"], 15.0, 50.0, -300, 300, 20, 28, "steps_rho_neutral.root", "check_rho_neutral.png");
 
-  std::cout << "DC Wall width, no correction, charged" << std::endl;
-  KloeTools::quantile_limits(h_rho_charged_no_corr["Regeneration"], 23, 27, u0, v0);
-  std::cout << "Cylindrical BP Wall width, no correction, charged" << std::endl;
-  KloeTools::quantile_limits(h_rho_charged_no_corr["Regeneration"], 3.0, 5.5, u0, v0);
-  std::cout << "Spherical BP Wall width, no correction, charged" << std::endl;
-  KloeTools::quantile_limits(h_R_charged_no_corr["Regeneration"], 7.0, 13.0, u0, v0);
-
-  std::cout << "DC Wall width, no correction, neutral" << std::endl;
-  KloeTools::quantile_limits(h_rho_neutral_no_corr["Regeneration"], 23, 27, u0, v0);
-  std::cout << "Cylindrical BP Wall width, no correction, neutral" << std::endl;
-  KloeTools::quantile_limits(h_rho_neutral_no_corr["Regeneration"], 3.0, 5.5, u0, v0);
-  std::cout << "Spherical BP Wall width, no correction, neutral" << std::endl;
-  KloeTools::quantile_limits(h_R_neutral_no_corr["Regeneration"], 7.0, 13.0, u0, v0);
-
-  std::cout << "DC Wall width, corrected, charged" << std::endl;
-  KloeTools::quantile_limits(h_rho_charged["Regeneration"], 23, 27, u0, v0);
-  std::cout << "Cylindrical BP Wall width, corrected, charged" << std::endl;
-  KloeTools::quantile_limits(h_rho_charged["Regeneration"], 3.0, 5.5, u0, v0);
-  std::cout << "Spherical BP Wall width, corrected, charged" << std::endl;
-  KloeTools::quantile_limits(h_R_charged["Regeneration"], 7.0, 13.0, u0, v0);
-
-  std::cout << "DC Wall width, neutral" << std::endl;
-  KloeTools::quantile_limits(h_rho_neutral["Regeneration"], 23, 27, u0, v0);
-  std::cout << "Cylindrical BP Wall width, neutral" << std::endl;
-  KloeTools::quantile_limits(h_rho_neutral["Regeneration"], 3.0, 5.5, u0, v0);
-  std::cout << "Spherical BP Wall width, neutral" << std::endl;
-  KloeTools::quantile_limits(h_R_neutral["Regeneration"], 7.0, 13.0, u0, v0);
+  KloeTools::subtract_1D_fit_from_2D_matrix_and_ratio(h_corr_R_dt_charged["Data"], h_corr_R_dt_charged["Regeneration"], h_corr_R_dt_charged["Data"], 6.0, 21.0, -300, 300, 6, 15, "steps_R_charged.root", "check_R_charged.png");
+  KloeTools::subtract_1D_fit_from_2D_matrix_and_ratio(h_corr_R_dt_neutral["Data"], h_corr_R_dt_neutral["Regeneration"], h_corr_R_dt_neutral["Data"], 6.0, 21.0, -300, 300, 6, 15, "steps_R_neutral.root", "check_R_neutral.png");
   
 
   // Zapis wyników do pliku ROOT
@@ -536,35 +515,24 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
 
   output_file.Close();
 
-  double scaling_factor_lumi = 1.09;//data_entries / static_cast<double>(mc_entries);
+  double scaling_factor_lumi = data_entries / static_cast<double>(mc_entries);
 
   h_rho_charged_no_corr["Data"]->Sumw2(); // Upewniamy się, że błędy są poprawnie przeliczone dla danych bez korekcji
   h_rho_charged_no_corr["MC sum"]->Sumw2(); // Upewniamy się, że błędy są poprawnie przeliczone dla sumy
-  h_rho_charged_no_corr["Regeneration"]->Sumw2(); // Upewniamy się, że błędy są poprawnie przeliczone dla regeneracji
   h_rho_neutral_no_corr["Data"]->Sumw2();
   h_rho_neutral_no_corr["MC sum"]->Sumw2();
-  h_rho_neutral_no_corr["Regeneration"]->Sumw2();
   h_R_charged_no_corr["Data"]->Sumw2();
   h_R_charged_no_corr["MC sum"]->Sumw2();
-  h_R_charged_no_corr["Regeneration"]->Sumw2();
   h_R_neutral_no_corr["Data"]->Sumw2();
   h_R_neutral_no_corr["MC sum"]->Sumw2();
-  h_R_neutral_no_corr["Regeneration"]->Sumw2();
 
   h_rho_charged_no_corr["MC sum"]->Scale(scaling_factor_lumi); // Skaluje MC do danych
-  h_rho_charged_no_corr["Regeneration"]->Scale(scaling_factor_lumi);
-  h_rho_neutral_no_corr["MC sum"]->Scale(scaling_factor_lumi);
-  h_rho_neutral_no_corr["Regeneration"]->Scale(scaling_factor_lumi);
-  h_R_charged_no_corr["MC sum"]->Scale(scaling_factor_lumi);
-  h_R_charged_no_corr["Regeneration"]->Scale(scaling_factor_lumi);
-  h_R_neutral_no_corr["MC sum"]->Scale(scaling_factor_lumi);
-  h_R_neutral_no_corr["Regeneration"]->Scale(scaling_factor_lumi);
 
-  KloeTools::plot_ratio_and_save(h_rho_charged_no_corr["Data"], h_rho_charged_no_corr["MC sum"], h_rho_charged_no_corr["Regeneration"], "Ratio: rho_charged", "img/ratio_rho_charged.png");
-  KloeTools::plot_ratio_and_save(h_rho_neutral_no_corr["Data"], h_rho_neutral_no_corr["MC sum"], h_rho_neutral_no_corr["Regeneration"], "Ratio: rho_neutral", "img/ratio_rho_neutral.png");
+  KloeTools::plot_ratio_and_save(h_rho_charged_no_corr["Data"], h_rho_charged_no_corr["MC sum"], "Ratio: rho_charged", "img/ratio_rho_charged.png");
+  KloeTools::plot_ratio_and_save(h_rho_neutral_no_corr["Data"], h_rho_neutral_no_corr["MC sum"], "Ratio: rho_neutral", "img/ratio_rho_neutral.png");
 
-  KloeTools::plot_ratio_and_save(h_R_charged_no_corr["Data"], h_R_charged_no_corr["MC sum"], h_R_charged_no_corr["Regeneration"], "Ratio: R_charged", "img/ratio_R_charged.png");
-  KloeTools::plot_ratio_and_save(h_R_neutral_no_corr["Data"], h_R_neutral_no_corr["MC sum"], h_R_neutral_no_corr["Regeneration"], "Ratio: R_neutral", "img/ratio_R_neutral.png");
+  KloeTools::plot_ratio_and_save(h_R_charged_no_corr["Data"], h_R_charged_no_corr["MC sum"], "Ratio: R_charged", "img/ratio_R_charged.png");
+  KloeTools::plot_ratio_and_save(h_R_neutral_no_corr["Data"], h_R_neutral_no_corr["MC sum"], "Ratio: R_neutral", "img/ratio_R_neutral.png");
 
   // 2D ratios
   h_corr_rho_dt_charged["MC sum"]->Scale(scaling_factor_lumi); // Skaluje MC do danych
@@ -585,8 +553,6 @@ void regeneration_cross_section_after_DC_displacement(TString root_file_date)
   h_corr_R_dt_charged["MC sum"]->Add(h_corr_R_dt_neutral["MC sum"]);
   h_corr_rho_dt_charged["Data"]->Add(h_corr_rho_dt_neutral["Data"]); // Dodaj neutralne do naładowania sumy
   h_corr_R_dt_charged["Data"]->Add(h_corr_R_dt_neutral["Data"]);
-  h_corr_rho_dt_charged["Regeneration"]->Add(h_corr_rho_dt_neutral["Regeneration"]);
-  h_corr_R_dt_charged["Regeneration"]->Add(h_corr_R_dt_neutral["Regeneration"]);
 
   TH2 *h_ratio_rho_dt = KloeTools::plot_ratio_2D_and_save(h_corr_rho_dt_charged["Data"], h_corr_rho_dt_charged["MC sum"], h_corr_rho_dt_charged["Regeneration"], "Ratio: rho_charged vs dt", "img/ratio_rho_charged_dt.png");
   TH2 *h_ratio_R_dt = KloeTools::plot_ratio_2D_and_save(h_corr_R_dt_charged["Data"], h_corr_R_dt_charged["MC sum"], h_corr_R_dt_charged["Regeneration"], "Ratio: R_charged vs dt", "img/ratio_R_charged_dt.png");

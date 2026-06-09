@@ -1,0 +1,828 @@
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:26:38] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:26:49] Info:  - End of analysis
+
+
+
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:27:07] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:27:19] Info:  - End of analysis
+
+
+
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:40:47] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:41:26] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:41:32] Info:  - End of analysis
+
+
+
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:42:43] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:44:10] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:44:38] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:46:01] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:48:41] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:48:46] Info:  - End of analysis
+
+
+
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:49:12] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:49:19] Info:  - End of analysis
+
+
+
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:53:52] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:53:58] Info:  - End of analysis
+
+
+
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:55:13] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:55:18] Info:  - End of analysis
+
+
+
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 00:59:34] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 00:59:40] Info:  - End of analysis
+
+
+
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:00:23] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:00:29] Info:  - End of analysis
+
+
+
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:01:43] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:01:49] Info:  - End of analysis
+
+
+
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:02:31] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:02:37] Info:  - End of analysis
+
+
+
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:04:40] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:04:45] Info:  - End of analysis
+
+
+
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:06:05] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:06:11] Info:  - End of analysis
+
+
+
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:08:08] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:08:14] Info:  - End of analysis
+
+
+
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:09:55] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:10:01] Info:  - End of analysis
+
+
+
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:10:51] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:10:57] Info:  - End of analysis
+
+
+
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:12:21] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:12:27] Info:  - End of analysis
+
+
+
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:14:19] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:14:32] Info:  - End of analysis
+
+
+
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:15:38] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:15:44] Info:  - End of analysis
+
+
+
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:17:10] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:17:16] Info:  - End of analysis
+
+
+
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:18:13] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:18:19] Info:  - End of analysis
+
+
+
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:18:22] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:18:36] Info:  - End of analysis
+
+
+
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:20:40] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:20:53] Info:  - End of analysis
+
+
+
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:22:13] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:22:26] Info:  - End of analysis
+
+
+
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:23:14] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:23:20] Info:  - End of analysis
+
+
+
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:33:10] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:33:22] Info:  - End of analysis
+
+
+
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:36:14] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:36:26] Info:  - End of analysis
+
+
+
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:37:19] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:37:32] Info:  - End of analysis
+
+
+
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:38:08] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:38:20] Info:  - End of analysis
+
+
+
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:39:48] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:40:01] Info:  - End of analysis
+
+
+
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:40:31] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:40:43] Info:  - End of analysis
+
+
+
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:43:05] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:43:17] Info:  - End of analysis
+
+
+
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:44:50] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:45:02] Info:  - End of analysis
+
+
+
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:49:53] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:50:07] Info:  - End of analysis
+
+
+
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:52:38] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:52:50] Info:  - End of analysis
+
+
+
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:53:31] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:53:43] Info:  - End of analysis
+
+
+
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 01:59:22] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 01:59:34] Info:  - End of analysis
+
+
+
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:00:18] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:00:30] Info:  - End of analysis
+
+
+
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:01:58] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:02:10] Info:  - End of analysis
+
+
+
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:04:27] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:04:40] Info:  - End of analysis
+
+
+
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:05:33] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:05:46] Info:  - End of analysis
+
+
+
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:06:40] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:06:53] Info:  - End of analysis
+
+
+
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:07:25] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:07:38] Info:  - End of analysis
+
+
+
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:07:58] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:08:11] Info:  - End of analysis
+
+
+
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:09:03] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:09:15] Info:  - End of analysis
+
+
+
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:17:49] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:18:01] Info:  - End of analysis
+
+
+
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:20:14] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:20:26] Info:  - End of analysis
+
+
+
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant K0 MASS to value 497.611 based on PDG for particle S011M/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant K(L)0 MEAN LIFE to value 51.1573 based on PDG for particle S013T/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant Delta(m) to value 5.29279 based on PDG for particle S013D/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant Delta(m) to value 5.2889 based on PDG for particle S013D/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant |epsilon| = (2|eta(+-)| + |eta(00)|)/3 to value 0.0022279 based on PDG for particle S013EP/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant Re(epsilon'/epsilon) = (1-|eta(00)/eta(+-)|)/3 to value 0.00166435 based on PDG for particle S013EPS/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -3.5421e-05 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant Im(epsilon'/epsilon) = -(phi(00) - phi(+-))/3 to value -0.0019809 based on PDG for particle S013EPI/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant phi(+-) to value 0.757397 based on PDG for particle S013F+-/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant phi(00) to value 0.76334 based on PDG for particle S013FOO/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant tau_s to value 0.0895638 based on PDG for particle S012T/2025.
+[2026-06-08 02:31:31] Info: Variables initialized - Set constant tau_s to value 0.0895433 based on PDG for particle S012T/2025.
+[2026-06-08 02:31:45] Info:  - End of analysis
+
+
+
